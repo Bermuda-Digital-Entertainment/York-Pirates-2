@@ -195,8 +195,16 @@ public class GameScreen extends ScreenAdapter {
      * Is called once every frame. Used for game calculations that take place before rendering.
      */
     private void update(){
+
+        // Check for user input for movement
+        // Get input movement
+        int horizontal = ((Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) ? 1 : 0)
+                - ((Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) ? 1 : 0);
+        int vertical = ((Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) ? 1 : 0)
+                - ((Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) ? 1 : 0);
+
         // Call updates for all relevant objects
-        player.update(this, game.camera);
+        player.update(this, game.camera, horizontal, vertical);
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).update(this);
         }

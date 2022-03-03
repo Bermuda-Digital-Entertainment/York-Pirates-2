@@ -55,14 +55,8 @@ public class Player extends GameObject {
      * @param screen    The main game screen.
      * @param camera    The player camera.
      */
-    public void update(GameScreen screen, OrthographicCamera camera){
+    public void update(GameScreen screen, OrthographicCamera camera, int horizontal, int vertical){
         Vector2 oldPos = new Vector2(x,y); // Stored for next-frame calculations
-
-        // Get input movement
-        int horizontal = ((Gdx.input.isKeyPressed(Input.Keys.D) || Gdx.input.isKeyPressed(Input.Keys.RIGHT)) ? 1 : 0)
-                - ((Gdx.input.isKeyPressed(Input.Keys.A) || Gdx.input.isKeyPressed(Input.Keys.LEFT)) ? 1 : 0);
-        int vertical = ((Gdx.input.isKeyPressed(Input.Keys.W) || Gdx.input.isKeyPressed(Input.Keys.UP)) ? 1 : 0)
-                - ((Gdx.input.isKeyPressed(Input.Keys.S) || Gdx.input.isKeyPressed(Input.Keys.DOWN)) ? 1 : 0);
 
         // Calculate collision && movement
         if (horizontal != 0 || vertical != 0){
