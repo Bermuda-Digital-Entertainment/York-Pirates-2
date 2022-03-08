@@ -1,7 +1,6 @@
 package com.engteam14.yorkpirates;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
@@ -74,7 +73,7 @@ public class College extends GameObject {
      * Called once per frame. Used to perform calculations such as collision.
      * @param screen    The main game screen.
      */
-    public void update(GameScreen screen){
+    public void update(GameScreen screen, boolean enterPressed){
         direction.move();
         float playerX = screen.getPlayer().x;
         float playerY = screen.getPlayer().y;
@@ -101,7 +100,7 @@ public class College extends GameObject {
                 }
                 if(victory){
                     screen.getHUD().setGameEndable();
-                    if(Gdx.input.isKeyPressed(Input.Keys.ENTER)) screen.gameEnd(true);
+                    if(enterPressed) screen.gameEnd(true);
                 }
             }
         }else{

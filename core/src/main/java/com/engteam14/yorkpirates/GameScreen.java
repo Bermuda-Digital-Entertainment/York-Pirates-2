@@ -216,7 +216,7 @@ public class GameScreen extends ScreenAdapter {
         // Call updates for all relevant objects
         player.update(this, game.camera, horizontal, vertical);
         for(int i = 0; i < colleges.size; i++) {
-            colleges.get(i).update(this);
+            colleges.get(i).update(this,Gdx.input.isKeyPressed(Input.Keys.ENTER));
         }
 
         // Check for projectile creation, then call projectile update
