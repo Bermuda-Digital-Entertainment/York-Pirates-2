@@ -192,6 +192,16 @@ public class GameScreen extends ScreenAdapter {
     }
 
     /**
+     * Is called once every time the window is resized. Sets the camera to the new resolution.
+     * @param width The new width of the screen in pixels
+     * @param delta The new height of the screen in pixels
+     */
+    @Override
+    public void resize(int width,int height){
+      HUDCam.setToOrtho(false, width, height);
+    }
+
+    /**
      * Is called once every frame. Used for game calculations that take place before rendering.
      */
     private void update(){

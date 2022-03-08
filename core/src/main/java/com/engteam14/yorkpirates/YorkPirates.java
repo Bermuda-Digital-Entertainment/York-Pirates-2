@@ -99,6 +99,17 @@ public class YorkPirates extends Game {
 	}
 
 	/**
+	 * Is called once every time the window is resized. Sets the camera to the new resolution.
+	 * @param width The new width of the screen in pixels
+	 * @param delta The new height of the screen in pixels
+	 */
+	@Override
+	public void resize(int width,int height){
+		camera.setToOrtho(false, width, height);
+	}
+
+
+	/**
 	 * Closes the application
 	 */
 	public void quit(){
