@@ -8,14 +8,17 @@ import com.engteam14.yorkpirates.YorkPirates;
 
 /** Launches the desktop (LWJGL3) application. */
 public class Lwjgl3Launcher {
+	/** Constructor class, creates the main application */
 	public static void main(String[] args) {
 		createApplication();
 	}
 
+	/** Creates base lwjgl3 application */
 	private static Lwjgl3Application createApplication() {
 		return new Lwjgl3Application(new YorkPirates(), getDefaultConfiguration());
 	}
 
+	/** Creates base lwjgl3 application configuration */
 	private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
 		Lwjgl3ApplicationConfiguration configuration = new Lwjgl3ApplicationConfiguration();
 		configuration.setTitle( "York Pirates!");
