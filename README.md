@@ -134,12 +134,12 @@ The most recent version of the game can be downloaded from the releases tab.
 
 ## Team Members
 
-- [Felix French](https://github.com/orgs/engteam14/people/FelixRizzo)
-- [Joachim Jones](https://github.com/orgs/engteam14/people/JoachimJones)
-- [Saud Kidwai](https://github.com/orgs/engteam14/people/Saud1906)
-- [Katie Maison](https://github.com/orgs/engteam14/people/katie291100)
-- [Jacob Poulton](https://github.com/orgs/engteam14/people/jacobpoulton)
-- [Cody Spinks](https://github.com/orgs/engteam14/people/Cdsspnks96)
+- [Prajwal Binnamangala](https://github.com/orgs/Bermuda-Digital-Entertainment/people/PrajBS)
+- [Joseph Sisson](https://github.com/orgs/Bermuda-Digital-Entertainment/people/Joseph-S12)
+- [Aymeric Goransson](https://github.com/orgs/Bermuda-Digital-Entertainment/people/Aymeric-G)
+- [Sebastian Sobczyk](https://github.com/orgs/Bermuda-Digital-Entertainment/people/Xisho)
+- [David Ademola](https://github.com/orgs/Bermuda-Digital-Entertainment/people/david2700)
+- [CJ Donoghue](https://github.com/orgs/Bermuda-Digital-Entertainment/people/cjd552)
 
 ## Attribution
 
