@@ -1,5 +1,5 @@
 # York Pirates!
-![York Pirates!](https://engteam14.github.io/media/Logo.gif)
+![York Pirates!](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Logo.gif)
 
 A University of York Computer Science Engineering 1 group project.
 
