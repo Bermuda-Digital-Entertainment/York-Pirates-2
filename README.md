@@ -15,49 +15,49 @@ Move around the lake and fight opposing colleges!
 
 ### Animated Title Screen
 
-![Title Screen](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Title_Screen.gif)
+![Title Screen](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Title_Screen.gif)
 
 Application comes with a main screen, where you can enter a name of your choice, start the game, and view our wonderful title graphic!
 <hr/>
 
 ### Dynamic Tutorial
-![Tutorial](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Tutorial.gif)
+![Tutorial](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Tutorial.gif)
 
 Our game begins with a tutorial to show even the least inventive player just how to get 100% out of York Pirates!
 
 <hr/>
 
 ### Fluid Goal Indicators
-![Indicators](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Indicators.gif)
+![Indicators](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Indicators.gif)
 
 In addition to our seamless movement, the game contains indicators so that you're never lost in our wonderfully crafted map environment!
 
 <hr/>
 
 ### Fast Paced Combat!
-![Combat](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Combat.gif)
-![Combat](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Combat2.gif)
+![Combat](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Combat.gif)
+![Combat](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Combat2.gif)
 
 Engage in fierce and engaging combat against colleges that feature individually processed projectiles to keep you on your toes!
 
 <hr/>
 
 ### Game Over...
-![Game Over](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Game_Over.gif)
+![Game Over](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Game_Over.gif)
 
 No punches (or in this case cannonballs) were pulled during the making of this game, and player death is implemented and possible!
 
 <hr/>
 
 ### Player Tasklist
-![Tasks](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Tasks.gif)
+![Tasks](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Tasks.gif)
 
 In addition to allowing inferior foes to join your ranks (complete with full image and palette swaps!), defeating colleges and other commendable tasks award you with well-earned loot!
 
 <hr/>
 
 ### Game Win!
-![Game Win](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Game_Win.gif)
+![Game Win](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Game_Win.gif)
 
 Once all the colleges are captured and you are as satisfied with the gameplay experience as you are with our code, return to your home college to win the game (and pick our code to win at life)!
 
@@ -85,7 +85,7 @@ table.add(button).expand();
 ```
 But that's not all...
 
-![Debug Mode](https://github.com/engteam14/engteam14.github.io/blob/4eec4ebe7497bdd52e685b58480de33d258af742/media/Debug.gif)
+![Debug Mode](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/Debug.gif)
 
 Featuring a UI debug mode! All at the flip of a boolean.
 
@@ -124,7 +124,7 @@ public class ScreenName extends ScreenAdapter {
 Using LibGDX's package for Tiled maps is the easiest way to rapidly produce gameplay levels.
 The software [Tiled](https://www.mapeditor.org) can be used to produce levels, with easy to use wide-ranging functionality, it's the industry's best for a reason!
 
-![Tiled](https://github.com/engteam14/engteam14.github.io/blob/8bcd1e29772d236150961fb6efaf845062fdc000/media/tiled.gif)
+![Tiled](https://github.com/Bermuda-Digital-Entertainment/Bermuda-Digital-Entertainment.github.io/blob/main/media/tiled.gif)
 
 Maps from Tiled can be easily imported into LibGDX, and we've even implemented our own collision system around it - ready out of the box!
 
