@@ -1,3 +1,5 @@
+apply plugin: "java-library"
+
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 eclipse.project.name = appName + '-core'
 
@@ -12,4 +14,5 @@ dependencies {
 	api "com.github.tommyettinger:anim8-gdx:$anim8Version"
 	api "com.github.tommyettinger:libgdx-utils-box2d:$utilsBox2dVersion"
 	api "com.github.tommyettinger:libgdx-utils:$utilsVersion"
+	api 'junit:junit:4.13'
 }
