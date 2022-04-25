@@ -43,10 +43,8 @@ public class HeadlessLauncher extends BlockJUnit4ClassRunner implements Applicat
 	@Override
 	protected void runChild(FrameworkMethod method, RunNotifier notifier) {
 		synchronized (invokeInRender) {
-			// add for invoking in render phase, where gl context is available
 			invokeInRender.put(method, notifier);
 		}
-		// wait until that test was invoked
 		waitUntilInvokedInRenderMethod();
 	}
 

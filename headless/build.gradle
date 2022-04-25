@@ -2,8 +2,12 @@ apply plugin: 'java'
 
 sourceSets.main.resources.srcDirs += [ rootProject.file('assets').path ]
 sourceSets.main.java.srcDirs = [ "src/" ]
+sourceSets.test.java.srcDirs = [ "src/" ]
 eclipse.project.name = appName + '-headless'
 sourceCompatibility = 1.8
+
+reporting.baseDir = "test-reports"
+testResultsDirName = "$buildDir/test-results"
 
 dependencies {
 	implementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
@@ -20,4 +24,12 @@ dependencies {
 	testImplementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
 	testImplementation "com.badlogicgames.gdx:gdx:$gdxVersion"
 	testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+}
+
+test {
+		reports {
+	 			junitXml.outputLocation.set(layout.buildDirectory.dir("test-junit-xml"))
+	 	}
+		useJUnit()
+		maxHeapSize = '1G'
 }
