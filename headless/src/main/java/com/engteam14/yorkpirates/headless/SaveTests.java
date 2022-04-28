@@ -15,17 +15,17 @@ import com.engteam14.yorkpirates.GameObject;
 public class SaveTests {
 
     /** Tests if the alcuin_2.png file exists */
-    @Test
-    public void testGameObjectSave1() {
-      Array<Texture>testTexture = new Array<>();
-      GameObject testObject;
-      String testString;
-      testTexture.add(new Texture("alcuin_2.png"));
-
-      testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
-      testObject.genSave();
-      testString = testObject.returnSaveString();
-
-      assertTrue("This test will only pass when a GameObject returns a valid JSON.", testString.equals("h"));
-    }
+    // @Test
+    // public void testGameObjectSave1() {
+    //   Array<Texture>testTexture = new Array<>();
+    //   GameObject testObject;
+    //   String testString;
+    //   testTexture.add(new Texture("alcuin_2.png"));
+    //
+    //   testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
+    //   testObject.genSave();
+    //   testString = testObject.returnSaveString();
+    //
+    //   assertTrue("This test will only pass when a GameObject returns a valid JSON.", testString.equals("h"));
+    // }
 }
