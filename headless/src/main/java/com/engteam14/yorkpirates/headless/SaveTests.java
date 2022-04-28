@@ -22,7 +22,7 @@ public class SaveTests {
     SaveLoad saveGame = new SaveLoad("/home/joseph/game");
   }
 
-    /** Tests if the alcuin_2.png file exists */
+    /** Tests if the JSON generator for GameObject works correctly */
     @Test
     public void testGameObjectSave1() {
       Array<Texture>testTexture = new Array<>();
@@ -35,5 +35,18 @@ public class SaveTests {
       testString = testObject.returnSaveString();
 
       assertEquals(testString, "{\"currentHealth\":0.0,\"x\":12.0,\"y\":14.0,\"maxHealth\":0,\"team\":\"red\"}");
+    }
+
+    /** Tests if the JSON generator for GameObject and SaveLoad works correctly and feeds properly into SaveLoad */
+    @Test
+    public void testGameObjectSave2() {
+      SaveLoad saveGame = new SaveLoad("/home/joseph/game");
+      Array<Texture>testTexture = new Array<>();
+      GameObject testObject;
+      String testString;
+      testTexture.add(new Texture("alcuin_2.png"));
+
+      testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
+      saveGame.saveObject(testObject);
     }
 }

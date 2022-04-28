@@ -10,4 +10,9 @@ public class SaveLoad {
     path = directory;
     savedGame = new JSONObject();
   }
+
+  public void saveObject(GameObject object){
+    object.genSave();
+    savedGame.put(object.team, object.returnSave());
+  }
 }
