@@ -181,14 +181,18 @@ public class College extends GameObject {
      */
     @Override
     public void draw(SpriteBatch batch, float elapsedTime){
-        if(doBloodSplash)   batch.setShader(shader); // Set red shader to the batch
-        else                batch.setShader(null);
+        if(doBloodSplash){
+          //batch.setShader(shader);// Set red shader to the batch
+        }
+        else{
+          batch.setShader(null);
+        }
 
         // Draw college
         batch.draw(anim.getKeyFrame(elapsedTime, true), x - width/2, y - height/2, width, height);
 
         // Draw boats before college so under
-        batch.setShader(null);
+        //batch.setShader(null);
         for(int i = 0; i < boats.size; i++){
             GameObject boat = boats.get(i);
             batch.draw(boatTexture.get(0), boat.x+boat.height, boat.y, 0,0, boat.width, boat.height, 1f, 1f, boatRotations.get(i), 0, 0, boatTexture.get(0).getWidth(), boatTexture.get(0).getHeight(), false, false);

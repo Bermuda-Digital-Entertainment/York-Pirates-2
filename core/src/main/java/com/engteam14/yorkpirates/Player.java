@@ -169,9 +169,10 @@ public class Player extends GameObject {
     public void draw(SpriteBatch batch, float elapsedTime){
         // Generates the sprite
         Texture frame = anim.getKeyFrame((currentHealth/maxHealth > 0.66f) ? 0 : ((currentHealth/maxHealth > 0.33f) ? 2 : 1), true);
-        if(doBloodSplash){
-            batch.setShader(shader); // Set our grey-out shader to the batch
-        } float rotation = (float) Math.toDegrees(Math.atan2(previousDirectionY, previousDirectionX));
+        //if(doBloodSplash){
+            //batch.setShader(shader); // Set our grey-out shader to the batch
+        //}
+        float rotation = (float) Math.toDegrees(Math.atan2(previousDirectionY, previousDirectionX));
 
         // Draws sprite and health-bar
         batch.draw(frame, x - width/2, y - height/2, width/2, height/2, width, height, 1f, 1f, rotation, 0, 0, frame.getWidth(), frame.getHeight(), false, false);

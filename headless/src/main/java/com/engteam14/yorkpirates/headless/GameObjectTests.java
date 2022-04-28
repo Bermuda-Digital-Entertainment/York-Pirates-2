@@ -16,8 +16,10 @@ import com.engteam14.yorkpirates.GameObject;
 public class GameObjectTests {
 
   @Test
-  public void testGameObjectInit() {
-      assertEquals(1, 1);
+  public void testGameObjectInit() throws Exception {
+    Array<Texture>testTexture = new Array<>();
+    GameObject testObject;
+    testTexture.add(new Texture("alcuin_2.png"));
+    testObject = new GameObject(testTexture, 0, 12, 10, 180, 158, "red");
   }
-
 }

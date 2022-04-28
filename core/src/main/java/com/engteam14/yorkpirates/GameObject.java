@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+//import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -26,7 +26,7 @@ public class GameObject {
     Rectangle hitBox;
     Animation<Texture> anim;
 
-    ShaderProgram shader = new ShaderProgram(Gdx.files.internal("red.vsh"), Gdx.files.internal("red.fsh"));
+    //ShaderProgram shader = new ShaderProgram(Gdx.files.internal("red.vsh"), Gdx.files.internal("red.fsh"));
 
     /**
      * Generates a generic object within the game with animated frame(s) and a hit-box.
@@ -53,7 +53,7 @@ public class GameObject {
      * @param frames    The animation frames, or a single sprite.
      * @param fps       The number of frames to be displayed per second.
      */
-    void changeImage(Array<Texture> frames, float fps){
+    public void changeImage(Array<Texture> frames, float fps){
         sprite = frames.get(0);
         anim = new Animation<>(fps==0?0:(1f/fps), frames);
     }
@@ -62,7 +62,7 @@ public class GameObject {
      * Called when the health of the object needs to be set.
      * @param mh    The health value for the object
      */
-    void setMaxHealth(int mh){
+    public void setMaxHealth(int mh){
         maxHealth = mh;
         currentHealth = maxHealth;
     }
@@ -100,7 +100,7 @@ public class GameObject {
     /**
      * Updates the object's hit-box location to match the object's rendered location.
      */
-    void updateHitboxPos() {
+    public void updateHitboxPos() {
         hitBox.x = x - width/2;
         hitBox.y = y - height/2;
     }
@@ -110,7 +110,7 @@ public class GameObject {
      * @param rect  The other object to be checked against.
      * @return      True if overlapping, false otherwise.
      */
-    boolean overlaps(Rectangle rect){
+    public boolean overlaps(Rectangle rect){
         updateHitboxPos();
         return hitBox.overlaps(rect);
     }
@@ -136,12 +136,17 @@ public class GameObject {
       objectJSON.put("team", team);
     }
 
+    /**
+     * Returns JSON object for the savegame.
+     */
     public JSONObject returnSave(){
       return objectJSON;
     }
 
+    /**
+     * Returns a string of the JSON object for the savegame.
+     */
     public String returnSaveString(){
-      //return objectJSON.toString();
-      return "h";
+      return objectJSON.toString();
     }
 }

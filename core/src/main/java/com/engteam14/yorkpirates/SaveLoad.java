@@ -6,7 +6,7 @@ public class SaveLoad {
   protected String path;
   protected JSONObject savedGame;
 
-  SaveLoad(String directory){
+  public SaveLoad(String directory){
     path = directory;
     savedGame = new JSONObject();
   }
