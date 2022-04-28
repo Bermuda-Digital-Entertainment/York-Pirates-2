@@ -3,6 +3,7 @@ package com.engteam14.yorkpirates.headless;
 import com.badlogic.gdx.Gdx;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,10 @@ import com.engteam14.yorkpirates.GameObject;
 @RunWith(HeadlessLauncher.class)
 public class SaveTests {
 
+  @Test
+  public void testSaveLoadInit() {
+      assertEquals(1, 1);
+  }
     /** Tests if the alcuin_2.png file exists */
     // @Test
     // public void testGameObjectSave1() {
