@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.TimeUtils;
 
 import java.util.Objects;
 
+import org.json.simple.JSONObject;
+
 import static java.lang.Math.abs;
 
 public class College extends GameObject {

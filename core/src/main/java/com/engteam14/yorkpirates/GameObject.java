@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
+import org.json.simple.JSONObject;
+
 public class GameObject {
 
     public float x;
@@ -18,6 +20,7 @@ public class GameObject {
     public int maxHealth;
     public float currentHealth;
 
+    public JSONObject objectJSON;
     String team;
     Texture sprite;
     Rectangle hitBox;
@@ -35,7 +38,7 @@ public class GameObject {
      * @param height    The size of the object in the y-axis.
      * @param team      The team the object is on.
      */
-    GameObject(Array<Texture> frames, float fps, float x, float y, float width, float height, String team){
+    public GameObject(Array<Texture> frames, float fps, float x, float y, float width, float height, String team){
         changeImage(frames,fps);
         this.x = x;
         this.y = y;
@@ -119,5 +122,26 @@ public class GameObject {
      */
     public void draw(SpriteBatch batch, float elapsedTime){
         batch.draw(anim.getKeyFrame(elapsedTime, true), x - width/2, y - height/2, width, height);
+    }
+
+    /**
+     * Generates a part of the core JSON file to store an object
+     */
+    public void genSave(){
+      objectJSON = new JSONObject();
+      objectJSON.put("x",x);
+      objectJSON.put("y",y);
+      objectJSON.put("maxHealth",maxHealth);
+      objectJSON.put("currentHealth",currentHealth);
+      objectJSON.put("team", team);
+    }
+
+    public JSONObject returnSave(){
+      return objectJSON;
+    }
+
+    public String returnSaveString(){
+      //return objectJSON.toString();
+      return "h";
     }
 }
