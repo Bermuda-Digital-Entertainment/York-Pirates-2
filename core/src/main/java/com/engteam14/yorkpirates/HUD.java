@@ -68,7 +68,18 @@ public class HUD {
                 screen.gamePause();
             }
         });
-
+        // Create shop button
+        Texture shopTexture = new Texture(Gdx.files.internal("shop_icon.png"));
+        Texture shopPressed = new Texture(Gdx.files.internal("shop_icon.png"));
+        ImageButton shopButton = new ImageButton(
+            new TextureRegionDrawable(new TextureRegion(shopTexture)),
+            new TextureRegionDrawable(new TextureRegion(shopPressed))
+        );
+        shopButton.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y){
+                screen.gamePause();
+            }
+        });
         // Create tutorial actors
         Image tutorialImg = new Image(screen.getMain().keyboard.getKeyFrame(0f));
         tutorialImg.setScaling(Scaling.fit);
@@ -134,6 +145,9 @@ public class HUD {
         // Add menu button to table
         table.row();
         table.add(menuButton).size(150).left().top().pad(25);
+        // Add shop button to table
+        table.row();
+        table.add(shopButton).size(150).left().top().pad(25);
 
         // Add tutorial to table
         table.row();

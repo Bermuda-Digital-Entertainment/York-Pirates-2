@@ -14,7 +14,8 @@ public class Player extends GameObject {
     private static final int POINT_FREQUENCY = 1000; // How often the player gains points by moving.
     private static final float CAMERA_SLACK = 0.1f; // What percentage of the screen the player can move in before the camera follows.
     private static final float SPEED =70f; // Player movement speed.
-    private static final int HEALTH = 200;
+    private static int HEALTH = 200;
+    private static float damage = 50f;
 
     // Movement calculation values
     private int previousDirectionX;
@@ -185,5 +186,17 @@ public class Player extends GameObject {
 
     public float getDistance() {
         return distance;
+    }
+    
+    public void addHealth(){
+        setMaxHealth(HEALTH+50);
+        currentHealth += 50;
+    }
+    public float getPlayerDamage(){
+        return damage;
+    }
+
+    public void addDamage(){
+        damage+=50f;
     }
 }

@@ -16,7 +16,7 @@ public class Projectile extends GameObject{
 
     private final float dx;
     private final float dy;
-    private final float projectileSpeed; // Projectile movement speed.
+    private static float projectileSpeed; // Projectile movement speed.
 
     private static final float projectileDamage = 20f; // Projectile damage.
 
@@ -68,7 +68,7 @@ public class Projectile extends GameObject{
             for(int i = 0; i < screen.colleges.size; i++) {
                 if (overlaps(screen.colleges.get(i).hitBox)){
                     if(!Objects.equals(team, screen.colleges.get(i).team)){ // Checks if projectile and college are on the same time
-                        screen.colleges.get(i).takeDamage(screen,projectileDamage,team);
+                        screen.colleges.get(i).takeDamage(screen,screen.getPlayer().getPlayerDamage(),team);
                     }
                     destroy(screen);
                 }
@@ -93,4 +93,5 @@ public class Projectile extends GameObject{
     private void destroy(GameScreen screen){
         screen.projectiles.removeValue(this,true);
     }
+
 }

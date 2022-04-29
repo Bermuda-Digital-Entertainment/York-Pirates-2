@@ -1,4 +1,4 @@
-package com.engteam14.yorkpirates;
+package com.engteam14.yorkpirates.headless;
 
 import org.json.simple.JSONObject;
 
