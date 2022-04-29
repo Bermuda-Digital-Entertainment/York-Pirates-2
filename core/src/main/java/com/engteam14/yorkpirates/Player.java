@@ -180,23 +180,42 @@ public class Player extends GameObject {
         batch.setShader(null);
     }
 
+    /** Adds a health bar to SpriteBatch*/
     public void drawHealthBar(SpriteBatch batch){
         if(!(playerHealth == null)) playerHealth.draw(batch, 0);
     }
 
+    /** Returns the distence*/
     public float getDistance() {
         return distance;
     }
-    
+
+    /** Adds health to the current health*/
     public void addHealth(){
         setMaxHealth(HEALTH+50);
         currentHealth += 50;
     }
+
+    /** Returns the damage the a player generated projectile does*/
     public float getPlayerDamage(){
         return damage;
     }
 
+    /** Adds to the that the player can do damage */
     public void addDamage(){
         damage+=50f;
+    }
+
+    @Override
+    public void genSave(){
+      super.genSave();
+      objectJSON.put("HEALTH",HEALTH);
+      objectJSON.put("damage",damage);
+      objectJSON.put("previousDirectionX",previousDirectionX);
+      objectJSON.put("previousDirectionY",previousDirectionY);
+      objectJSON.put("distance",distance);
+      objectJSON.put("lastMovementScore",lastMovementScore);
+      objectJSON.put("splashTime",splashTime);
+      objectJSON.put("timeLastHit",timeLastHit);
     }
 }

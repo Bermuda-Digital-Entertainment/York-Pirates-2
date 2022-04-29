@@ -15,4 +15,14 @@ public class SaveLoad {
     object.genSave();
     savedGame.put(object.team, object.returnSave());
   }
+
+  public void saveObject(College object){
+    object.genSave();
+    savedGame.put(object.getName(), object.returnSave());
+  }
+
+  public void saveObject(Player object){
+    object.genSave();
+    savedGame.put("player", object.returnSave());
+  }
 }
