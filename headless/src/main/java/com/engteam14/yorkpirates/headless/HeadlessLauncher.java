@@ -1,6 +1,6 @@
 //Sections of this code are based around Dimitris' GdxTestRunner
 
-package main.engteam14.yorkpirates.headless;
+package com.engteam14.yorkpirates.headless;
 
 import java.util.HashMap;
 import java.util.Map;
