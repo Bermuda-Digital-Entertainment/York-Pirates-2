@@ -25,4 +25,12 @@ public class SaveLoad {
     object.genSave();
     savedGame.put("player", object.returnSave());
   }
+
+  public JSONObject returnSave(){
+    return savedGame;
+  }
+
+  public String returnSaveString(){
+    return savedGame.toString();
+  }
 }

@@ -48,5 +48,7 @@ public class SaveTests {
 
       testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
       saveGame.saveObject(testObject);
+      testString = saveGame.returnSaveString();
+      assertEquals(testString, "{\"red\":{\"currentHealth\":0.0,\"x\":12.0,\"y\":14.0,\"maxHealth\":0,\"team\":\"red\"}}");
     }
 }
