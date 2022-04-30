@@ -16,4 +16,6 @@ public class Boat extends GameObject {
     super(frames, 0, x, y, frames.get(0).getWidth(), frames.get(0).getHeight(), team);
     this.player=player;
   }
+
+  public void update(GameScreen screen, Array<Boat> otherShips, int idNum){}
 }
