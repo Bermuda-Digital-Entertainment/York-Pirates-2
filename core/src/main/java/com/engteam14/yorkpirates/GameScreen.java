@@ -200,6 +200,13 @@ public class GameScreen extends ScreenAdapter {
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).draw(game.batch, 0);
         }
+
+
+        // Draw boats
+        for (int i = 0; i < boats.size; i++) {
+          boats.get(i).draw(game.batch, 0);
+        }
+
         game.batch.end();
 
         // Draw HUD
