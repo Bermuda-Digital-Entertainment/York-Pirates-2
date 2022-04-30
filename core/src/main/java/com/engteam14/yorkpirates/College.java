@@ -26,7 +26,8 @@ public class College extends GameObject {
     private Array<Texture> boatTexture;
     private Array<GameObject> boats;
     private Array<Float> boatRotations;
-
+    private int pointsGained = 50;
+    private int lootGained = 150;
     private boolean doBloodSplash = false;
 
     /**
@@ -135,9 +136,19 @@ public class College extends GameObject {
         }else{
             if(!Objects.equals(team, GameScreen.playerTeam)){ // Checks if the college is an enemy of the player
                 // College taken over
-                int pointsGained = 50;
+                if(screen.getDifficulty()==1){
+                    pointsGained = 50;
+                    lootGained = 150;
+                }
+                else if(screen.getDifficulty()==2){
+                    pointsGained = 100;
+                    lootGained = 100;
+                }
+                else{
+                    pointsGained = 200;
+                    lootGained = 50;
+                }
                 screen.points.Add(pointsGained);
-                int lootGained = 15;
                 screen.loot.Add(lootGained);
 
                 Array<Texture> healthBarSprite = new Array<>();

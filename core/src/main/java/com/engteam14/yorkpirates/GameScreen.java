@@ -21,6 +21,8 @@ public class GameScreen extends ScreenAdapter {
     // Team name constants
     public static final String playerTeam = "PLAYER";
     public static final String enemyTeam = "ENEMY";
+    // Difficulty Level
+    public int difficulty = 0;
 
     // Score managers
     public ScoreManager points;
@@ -43,7 +45,7 @@ public class GameScreen extends ScreenAdapter {
     private boolean followPlayer = false;
 
     // UI & Camera
-    private final HUD gameHUD;
+    private HUD gameHUD;
     private final SpriteBatch HUDBatch;
     private final OrthographicCamera HUDCam;
     private final FitViewport viewport;
@@ -147,6 +149,7 @@ public class GameScreen extends ScreenAdapter {
      */
     @Override
     public void render(float delta){
+
         // Only update if not paused
         if(!isPaused) {
             elapsedTime += delta;
@@ -267,6 +270,13 @@ public class GameScreen extends ScreenAdapter {
         game.setScreen(new TitleScreen(game));
     }
 
+    public void gameShop(){
+        game.setScreen(new ShopScreen(game, this));
+    }
+    public void gameDifficulty(){
+        game.setScreen(new DifficultyScreen(game, this));
+    }
+
     /**
      * Used to encapsulate elapsedTime.
      * @return  Time since the current session started.
@@ -341,5 +351,12 @@ public class GameScreen extends ScreenAdapter {
         HUDBatch.dispose();
         tiledMap.dispose();
         music.dispose();
+    }
+
+    public void setDifficulty(int level){
+        difficulty = level;
+    }
+    public int getDifficulty(){
+        return difficulty;
     }
 }

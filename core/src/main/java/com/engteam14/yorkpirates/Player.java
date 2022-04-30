@@ -199,4 +199,12 @@ public class Player extends GameObject {
     public void addDamage(){
         damage+=50f;
     }
+    public void setHealth(int amount){
+        setMaxHealth(amount);
+        currentHealth = amount;
+    }
+    public void setDamage(int amount){
+        damage = amount;
+    }
 }
+

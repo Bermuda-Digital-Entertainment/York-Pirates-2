@@ -1,4 +1,4 @@
-package com.engteam14.yorkpirates.headless;
+package main.java.com.engteam14.yorkpirates.headless;
 
 import com.badlogic.gdx.Gdx;
 import org.junit.Test;

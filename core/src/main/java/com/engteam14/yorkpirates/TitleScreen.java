@@ -145,8 +145,8 @@ public class TitleScreen extends ScreenAdapter {
             playerName = textBox.getText();
         }
         // Set player name and unpause game
-        nextGame.setPaused(false);
+        //nextGame.setPaused(true);
         nextGame.setPlayerName(playerName);
-        game.setScreen(nextGame);
+        game.setScreen(new DifficultyScreen(game, nextGame));
     }
 }

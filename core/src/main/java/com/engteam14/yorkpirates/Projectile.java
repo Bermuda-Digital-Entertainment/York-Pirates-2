@@ -37,7 +37,7 @@ public class Projectile extends GameObject{
         if(Objects.equals(team, GameScreen.playerTeam)){
             projectileSpeed = 150f;
         }else{
-            projectileSpeed = 50f;
+            projectileSpeed = 100f;
         }
 
         // Movement calculations

@@ -1,4 +1,6 @@
+
 package com.engteam14.yorkpirates;
+
 
 import org.json.simple.JSONObject;
 
@@ -9,7 +11,7 @@ public class SaveLoad {
   public SaveLoad(String directory){
     path = directory;
     savedGame = new JSONObject();
-  }
+   }
 
   public void saveObject(GameObject object){
     object.genSave();

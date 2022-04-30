@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.Scaling;
 
 public class HUD {
 
+    
     // Stage
     public Stage stage;
 
@@ -35,17 +36,20 @@ public class HUD {
     private final CheckBox movementTask;
     private final CheckBox pointsTask;
 
-    private final int DISTANCE_GOAL = MathUtils.random(55,65)*10;
-    private final int POINT_GOAL = MathUtils.random(13,18)*10;
+    private int DISTANCE_GOAL = 1;
+    private int POINT_GOAL = 1;
 
-    private final int DISTANCE_REWARD = MathUtils.random(17,23);
-    private final int POINT_REWARD = MathUtils.random(13,17);
-
+    private int DISTANCE_REWARD = 1;
+    private int POINT_REWARD = 1;
+    private boolean diffChange = false;
     /**
      * Generates a HUD object within the game that controls elements of the UI.
      * @param screen    The game screen which this is attached to.
      */
     public HUD(GameScreen screen){
+        // Generate task goals and rewards based on difficulty 
+
+
         // Generate skin
         TextureAtlas atlas;
         atlas = new TextureAtlas(Gdx.files.internal("Skin/YorkPiratesSkin.atlas"));
@@ -77,7 +81,8 @@ public class HUD {
         );
         shopButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y){
-                screen.gamePause();
+                screen.gameShop();
+                screen.setPaused(true);
             }
         });
         // Create tutorial actors
@@ -170,8 +175,36 @@ public class HUD {
         stage.draw();
 
         // Update the score and loot
+
         score.setText(screen.points.GetString());
         loot.setText(screen.loot.GetString());
+        // difficulty dependent update
+        if(screen.getDifficulty()==0){
+            assert true;
+        }
+        else if(screen.getDifficulty()!=0 && diffChange==false){
+            if(screen.getDifficulty()==1){
+                DISTANCE_GOAL = MathUtils.random(40,50)*10;
+                POINT_GOAL = MathUtils.random(15,20)*10;
+                DISTANCE_REWARD = 25;
+                POINT_REWARD = 25;
+                diffChange = true;
+            }
+            else if(screen.getDifficulty()==2){
+                DISTANCE_GOAL = MathUtils.random(60,70)*10;
+                POINT_GOAL = MathUtils.random(25,37)*10;
+                DISTANCE_REWARD = 35;
+                POINT_REWARD = 35;
+                diffChange = true;
+            }
+            else{
+                DISTANCE_GOAL = MathUtils.random(80,100)*10;
+                POINT_GOAL = MathUtils.random(60,69)*10;
+                DISTANCE_REWARD = 45;
+                POINT_REWARD = 45;
+                diffChange = true;
+            }
+        }else{assert true;}
 
         // Calculate which part of the tutorial to show
         if(screen.getPlayer().getDistance() < 2){
@@ -207,12 +240,18 @@ public class HUD {
         }
 
         // Distance related task calculations
-        if(screen.getPlayer().getDistance() > DISTANCE_GOAL && movementTask.isChecked()) { screen.loot.Add(DISTANCE_REWARD); }
+        if(screen.getPlayer().getDistance() > DISTANCE_GOAL && movementTask.isChecked()) {
+             screen.loot.Add(DISTANCE_REWARD);
+             screen.points.Add(DISTANCE_REWARD); 
+            }
         movementTask.setChecked(screen.getPlayer().getDistance() < DISTANCE_GOAL);
         movementTask.setText("Move "+DISTANCE_GOAL+"m:  "+Math.min((int)(screen.getPlayer().getDistance()), DISTANCE_GOAL)+"/"+DISTANCE_GOAL+"  ");
 
         // Points related task calculations
-        if(screen.points.Get() > POINT_GOAL && pointsTask.isChecked()) { screen.loot.Add(POINT_REWARD); }
+        if(screen.points.Get() > POINT_GOAL && pointsTask.isChecked()) { 
+            screen.loot.Add(POINT_REWARD);
+            screen.points.Add(POINT_REWARD);
+         }
         pointsTask.setChecked(screen.points.Get() < POINT_GOAL);
         pointsTask.setText("Get "+POINT_GOAL+" points:  "+Math.min(screen.points.Get(), POINT_GOAL)+"/"+POINT_GOAL+"  ");
     }

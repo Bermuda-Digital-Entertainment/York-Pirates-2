@@ -23,7 +23,7 @@ public class ShopScreen extends ScreenAdapter {
     public ShopScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
-        screen.setPaused(true);
+        
 
 
         //Generate Title 
@@ -109,11 +109,17 @@ public class ShopScreen extends ScreenAdapter {
             screen.loot.Subtract(50);
             screen.getPlayer().addHealth();
         }
+        else if(screen.loot.Get()<50){
+            assert true;
+        }
     }
     public void damageUpgrade(){
         if(screen.loot.Get()>= 50){
             screen.loot.Subtract(50);
             screen.getPlayer().addDamage();
+        }
+        else if(screen.loot.Get()<50){
+            assert true;
         }
     }
 }
