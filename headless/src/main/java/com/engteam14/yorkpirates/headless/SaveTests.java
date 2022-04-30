@@ -48,5 +48,21 @@ public class SaveTests {
 
       testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
       saveGame.saveObject(testObject);
+      testString = saveGame.returnSaveString();
+      assertEquals(testString, "{\"red\":{\"currentHealth\":0.0,\"x\":12.0,\"y\":14.0,\"maxHealth\":0,\"team\":\"red\"}}");
+    }
+
+    /** Tests if the SaveLoad class can save it's object to a file */
+    @Test
+    public void testGameObjectSave3() {
+      SaveLoad saveGame = new SaveLoad("/home/joseph/game");
+      Array<Texture>testTexture = new Array<>();
+      GameObject testObject;
+      String testString;
+      testTexture.add(new Texture("alcuin_2.png"));
+
+      testObject = new GameObject(testTexture, 0, 12,14, 16, 18, "red");
+      saveGame.saveObject(testObject);
+      saveGame.saveSave();
     }
 }

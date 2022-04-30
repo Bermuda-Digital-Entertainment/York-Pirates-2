@@ -223,7 +223,16 @@ public class College extends GameObject {
         boatRotations.add(rotation);
     }
 
+    /** Returns the name of the college*/
     public String getName(){
       return collegeName;
+    }
+
+    /** Generates the JSON for the college save*/
+    @Override
+    public void genSave(){
+      super.genSave();
+      objectJSON.put("splashTime",splashTime);
+      objectJSON.put("lastShotFired",lastShotFired);
     }
 }
