@@ -23,9 +23,11 @@ public class Boat extends GameObject {
   public Boat(Array<Texture> frames, float x, float y, float scale, String team, Player player){
     super(frames, 0, x, y, frames.get(0).getWidth()*scale, frames.get(0).getHeight()*scale, team);
     this.player=player;
+    this.currentHealth=50;
+    this.maxHealth=50;
     this.timeLastShot=0f;
     this.timeBetweenShots=2f;
-    this.speed=55;
+    this.speed=50;
   }
 
   public void update(GameScreen screen, Array<Boat> otherShips){
@@ -59,5 +61,9 @@ public class Boat extends GameObject {
 
   public Boolean nearPlayer(){
     return abs(this.x - player.x) < (Gdx.graphics.getWidth()/5f) && abs(this.y - player.y) < (Gdx.graphics.getHeight()/5f);
+  }
+
+  public void takeDamage(float damage){
+    currentHealth-=damage;
   }
 }
