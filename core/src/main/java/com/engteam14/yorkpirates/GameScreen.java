@@ -107,7 +107,6 @@ public class GameScreen extends ScreenAdapter {
 
         //Initialise Boats
         boats = new Array<>();
-        Boat newBoat;
         Array<Texture> boatSprites = new Array<>();
 
         // Add alcuin
@@ -122,8 +121,8 @@ public class GameScreen extends ScreenAdapter {
 
         //Add Derwent Boats
         boatSprites.add(new Texture("alcuin_boat.png"));
-        newBoat = new Boat(boatSprites, 1492f+30f, 665f-20f, 0.4f, enemyTeam, player);
-        boats.add(newBoat);
+        boats.add(new Boat(boatSprites, 1492f+80f, 665f-20f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1492f-80f, 665f+40f, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         // Add derwent
@@ -247,6 +246,10 @@ public class GameScreen extends ScreenAdapter {
         player.update(this, game.camera, horizontal, vertical);
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).update(this,Gdx.input.isKeyPressed(Input.Keys.ENTER));
+        }
+
+        for(int i = 0; i < boats.size; i++) {
+            boats.get(i).update(this,boats);
         }
 
         // Check for projectile creation, then call projectile update

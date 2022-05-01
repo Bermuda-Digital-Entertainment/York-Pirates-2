@@ -90,7 +90,7 @@ public class GameObject {
     /**
      * Sets the object's hit-box, based upon it's x, y, width and height values.
      */
-    private void setHitbox(){
+    protected void setHitbox(){
         hitBox = new Rectangle();
         updateHitboxPos();
         hitBox.width = width;
