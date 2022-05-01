@@ -122,7 +122,7 @@ public class GameScreen extends ScreenAdapter {
 
         //Add Derwent Boats
         boatSprites.add(new Texture("alcuin_boat.png"));
-        newBoat = new Boat(boatSprites, 1492f+30f, 665f-20f, enemyTeam, player);
+        newBoat = new Boat(boatSprites, 1492f+30f, 665f-20f, 0.4f, enemyTeam, player);
         boats.add(newBoat);
         boatSprites.clear();
 
