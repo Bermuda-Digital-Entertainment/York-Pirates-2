@@ -22,17 +22,17 @@ public class GameObjectTests {
     testTexture.add(new Texture("alcuin_2.png"));
     testObject = new GameObject(testTexture, 0, 12, 10, 180, 158, "red");
   }
-  
-  @Test
-    public void SetMaxHealthTest(){
-        var health = new GameObject();
-        assertEquals(100, health.maxHealth(100));
-    }
 
-    @Test
-    public void TakeDamageTest(){
-        var damage = new GameObject();
-        currentHealth = 70;
-        assertEquals(20, damage.takeDamage(50));
-    }
+  @Test
+  public void SetMaxHealthTest(){
+      var health = new GameObject();
+      assertEquals(100, health.maxHealth(100));
+  }
+
+  @Test
+  public void TakeDamageTest(){
+      var damage = new GameObject();
+      currentHealth = 70;
+      assertEquals(20, damage.takeDamage(50));
+  }
 }
