@@ -12,8 +12,8 @@ public class Boat extends GameObject {
 
   Player player;
 
-  public Boat(Array<Texture> frames, float x, float y, String team, Player player){
-    super(frames, 0, x, y, frames.get(0).getWidth(), frames.get(0).getHeight(), team);
+  public Boat(Array<Texture> frames, float x, float y, float scale, String team, Player player){
+    super(frames, 0, x, y, frames.get(0).getWidth()*scale, frames.get(0).getHeight()*scale, team);
     this.player=player;
   }
 
