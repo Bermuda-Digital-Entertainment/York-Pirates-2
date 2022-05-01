@@ -9,10 +9,13 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 
 import static java.lang.Math.abs;
+import static java.lang.Math.sqrt;
 
 public class Boat extends GameObject {
 
   protected Player player;
+
+  protected int speed;
 
   protected Float timeLastShot;     //Time since last shot
   protected Float timeBetweenShots; //Minimum time between shots
@@ -22,16 +25,22 @@ public class Boat extends GameObject {
     this.player=player;
     this.timeLastShot=0f;
     this.timeBetweenShots=2f;
+    this.speed=55;
   }
 
   public void update(GameScreen screen, Array<Boat> otherShips){
     shoot(screen);
+    followPlayer();
     setHitbox();
   }
 
   public void followPlayer(){
-    if (nearPlayer){
-      //move(){
+    Float xDir, yDir, distence;
+    if (nearPlayer()){
+      xDir=this.x-player.x;
+      yDir=this.y-player.y;
+      distence = (float) sqrt(xDir*xDir + yDir*yDir);
+      move(0-(xDir/distence * speed), 0-(yDir/distence * speed));
     }
   }
 
@@ -49,6 +58,6 @@ public class Boat extends GameObject {
   }
 
   public Boolean nearPlayer(){
-    return abs(this.x - player.x) < (Gdx.graphics.getWidth()/15f) && abs(this.y - player.y) < (Gdx.graphics.getHeight()/10f);
+    return abs(this.x - player.x) < (Gdx.graphics.getWidth()/5f) && abs(this.y - player.y) < (Gdx.graphics.getHeight()/5f);
   }
 }
