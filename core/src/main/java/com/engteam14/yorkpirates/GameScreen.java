@@ -119,7 +119,7 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
         collegeSprites.clear();
 
-        //Add Derwent Boats
+        //Add Alcuin Boats
         boatSprites.add(new Texture("alcuin_boat.png"));
         boats.add(new Boat(boatSprites, 1492f+80f, 665f-20f, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 1492f-80f, 665f+40f, 0.25f, enemyTeam, player));
@@ -134,9 +134,10 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
         collegeSprites.clear();
 
-        //Add Derwent Boats
-        Array<Texture> boatSprite = new Array<>();
+        // Add Derwent Boats
         boatSprites.add(new Texture("derwent_boat.png"));
+        boats.add(new Boat(boatSprites, 1815f-120f, 2105f+20f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1815f-80f, 2105f+40f, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         // Add langwith
@@ -151,7 +152,10 @@ public class GameScreen extends ScreenAdapter {
         colleges.add(newCollege);
         collegeSprites.clear();
 
+        //Add Langwith Boats
         boatSprites.add(new Texture("langwith_boat.png"));
+        boats.add(new Boat(boatSprites, 1300f+120f, 1530f+20f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1300f+80f, 1530f+40f, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         // Add goodricke
