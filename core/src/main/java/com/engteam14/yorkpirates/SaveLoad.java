@@ -39,18 +39,29 @@ public class SaveLoad {
 
   public void saveObject(Boat object){
     object.genSave();
-    savedGame.put("player", object.returnSave());
+    savedGame.put("boat", object.returnSave());
   }
 
-  public void saveObject(Array<College> objects){
+  public void saveColleges(Array<College> objects){
     College college;
     JSONObject savedColleges = new JSONObject();
     for(int i = 0; i < objects.size; i++) {
       college = objects.get(i);
       college.genSave();
-      savedColleges.put(i, college.returnSaveString());
+      savedColleges.put(i, college.returnSave());
     }
-    savedGame.put("colleges", savedColleges.toString());
+    savedGame.put("colleges", savedColleges);
+  }
+
+  public void saveBoats(Array<Boat> objects){
+    Boat boat;
+    JSONObject savedBoats = new JSONObject();
+    for(int i = 0; i < objects.size; i++) {
+      boat = objects.get(i);
+      boat.genSave();
+      savedBoats.put(i, boat.returnSave());
+    }
+    savedGame.put("boats", savedBoats);
   }
 
   public void resumeSave(GameScreen screen){
