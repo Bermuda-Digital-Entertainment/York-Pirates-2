@@ -19,7 +19,7 @@ public class SaveTests {
   /** Tests if the SaveLoad class can be created */
   @Test
   public void testSaveLoadInit() throws Exception {
-    SaveLoad saveGame = new SaveLoad("/home/joseph/game");
+    SaveLoad saveGame = new SaveLoad("./game");
   }
 
     /** Tests if the JSON generator for GameObject works correctly */
@@ -40,7 +40,7 @@ public class SaveTests {
     /** Tests if the JSON generator for GameObject and SaveLoad works correctly and feeds properly into SaveLoad */
     @Test
     public void testGameObjectSave2() {
-      SaveLoad saveGame = new SaveLoad("/home/joseph/game");
+      SaveLoad saveGame = new SaveLoad("./game");
       Array<Texture>testTexture = new Array<>();
       GameObject testObject;
       String testString;
@@ -55,7 +55,7 @@ public class SaveTests {
     /** Tests if the SaveLoad class can save it's object to a file */
     @Test
     public void testGameObjectSave3() {
-      SaveLoad saveGame = new SaveLoad("/home/joseph/game");
+      SaveLoad saveGame = new SaveLoad("./game");
       Array<Texture>testTexture = new Array<>();
       GameObject testObject;
       String testString;

@@ -23,10 +23,10 @@ public class SaveScreen extends ScreenAdapter {
     public SaveScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
-        
 
 
-        //Generate Title 
+
+        //Generate Title
         String imageN;
         imageN="paused.png";
         Texture titleT = new Texture(Gdx.files.internal(imageN));
@@ -48,14 +48,17 @@ public class SaveScreen extends ScreenAdapter {
         TextButton saveButton = new TextButton("Save Game", skin);
         saveButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                
+                System.out.println("SAVE");
+                SaveLoad save = new SaveLoad("./testSave");
+                save.saveSave();
             }
         });
 
         TextButton loadButton = new TextButton("Load Game", skin);
         loadButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                
+              SaveLoad save = new SaveLoad("./testSave");
+              save.loadSave();
             }
         });
 
@@ -103,5 +106,5 @@ public class SaveScreen extends ScreenAdapter {
         screen.setPaused(false);
         game.setScreen(screen);
     }
-        
+
 }

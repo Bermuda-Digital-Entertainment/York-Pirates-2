@@ -3,13 +3,19 @@ package com.engteam14.yorkpirates;
 
 
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.JSONParser;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import org.json.simple.parser.ParseException;
+import java.io.FileNotFoundException;
+
 
 public class SaveLoad {
   protected String path;
   protected JSONObject savedGame;
+  protected JSONArray loadedGame;
 
   public SaveLoad(String directory){
     path = directory;
@@ -31,7 +37,23 @@ public class SaveLoad {
     savedGame.put("player", object.returnSave());
   }
 
+  public void resumeSave(GameScreen screen){
+
+  }
+
   public void loadSave(){
+    JSONParser parser = new JSONParser();
+    try (FileReader reader = new FileReader(path)) {
+        loadedGame = (JSONArray) parser.parse(reader);
+
+        System.out.println(loadedGame);
+    }catch (FileNotFoundException exc) {
+      ;
+    }catch (IOException exc) {
+      ;
+    }catch (ParseException exc) {
+      ;
+    }
 
   }
 
