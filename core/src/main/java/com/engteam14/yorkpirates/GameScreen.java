@@ -1,17 +1,24 @@
 package com.engteam14.yorkpirates;
 
+import java.time.Instant;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
@@ -44,6 +51,7 @@ public class GameScreen extends ScreenAdapter {
     private String playerName;
     private Vector3 followPos;
     private boolean followPlayer = false;
+    
 
     // UI & Camera
     private HUD gameHUD;
@@ -59,6 +67,16 @@ public class GameScreen extends ScreenAdapter {
     private float elapsedTime = 0;
     private boolean isPaused = false;
     private float lastPause = 0;
+
+    // Weather
+    private Sprite fog;
+    private int fogDecider = 0;
+    private int fogLengthDecider = 0;
+    private Boolean counterStarted = false;
+    private long fogCounter;
+    private long startTimeStamp;
+
+
 
     /**
      * Initialises the main game screen, as well as relevant entities and data.
@@ -94,6 +112,8 @@ public class GameScreen extends ScreenAdapter {
         sprites.clear();
         followPos = new Vector3(player.x, player.y, 0f);
         game.camera.position.lerp(new Vector3(760, 510, 0f), 1f);
+
+
 
         // Initialise tilemap
         tiledMap = new TmxMapLoader().load("FINAL_MAP.tmx");
@@ -160,7 +180,17 @@ public class GameScreen extends ScreenAdapter {
 
         // Initialise projectiles array to be used storing live projectiles
         projectiles = new Array<>();
+
+        // Load the fog texture
+        fog = new Sprite(new Texture(Gdx.files.internal("fog.png")));
+        
+        startTimeStamp = Instant.now().getEpochSecond();
+
+        
+        
+
     }
+
 
     /**
      * Is called once every frame. Runs update(), renders the game and then the HUD.
@@ -198,6 +228,7 @@ public class GameScreen extends ScreenAdapter {
             HUDBatch.end();
         }
 
+
         // Draw Colleges
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).draw(game.batch, 0);
@@ -208,8 +239,36 @@ public class GameScreen extends ScreenAdapter {
         for (int i = 0; i < boats.size; i++) {
           boats.get(i).draw(game.batch, 0);
         }
+        fog.setX(player.x-(fog.getWidth()/2));
+        fog.setY(player.y-(fog.getHeight()/2));
 
+        if(fogDecider == 0){
+            fogDecider = MathUtils.random(30,60);
+        }
+        else{assert true;}
+
+        if(Instant.now().getEpochSecond() - startTimeStamp > 10){
+            fog.draw(game.batch, 1f);
+            if(counterStarted==false){
+                fogCounter = Instant.now().getEpochSecond();
+                counterStarted = true;
+                fogLengthDecider = MathUtils.random(15,30);
+            }
+            else{
+                if( Instant.now().getEpochSecond() - fogCounter > fogLengthDecider){
+                    startTimeStamp = Instant.now().getEpochSecond();
+                    fog.setFlip(true, false);
+                    counterStarted = false;
+                    fogDecider = 0;
+                    fogLengthDecider = 0;
+                }
+                else{assert true;}                            
+            }
+        }
+        else{assert true;}
+        
         game.batch.end();
+
 
         // Draw HUD
         HUDBatch.setProjectionMatrix(HUDCam.combined);

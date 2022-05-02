@@ -43,6 +43,11 @@ public class Boat extends GameObject {
       move(0-(xDir/distence * speed), 0-(yDir/distence * speed));
     }
   }
+  //public void followPlayer(){
+    //if (nearPlayer){
+      //move(){
+    //}
+  //}
 
   public void shoot(GameScreen screen){
 
