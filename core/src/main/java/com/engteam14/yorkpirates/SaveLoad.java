@@ -10,12 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
-
+import java.util.Objects;
 
 public class SaveLoad {
   protected String path;
   protected JSONObject savedGame;
-  protected JSONArray loadedGame;
+  protected JSONObject loadedGame;
 
   public SaveLoad(String directory){
     path = directory;
@@ -37,14 +37,27 @@ public class SaveLoad {
     savedGame.put("player", object.returnSave());
   }
 
-  public void resumeSave(GameScreen screen){
+  // public void saveObject(GameScreen screen){
+  //   object.genSave();
+  //   savedGame.put(object.getName(), object.returnSave());
+  // }
 
+  public void resumeSave(GameScreen screen){
+    resumeObject(screen.getPlayer());
+  }
+
+  public void resumeObject(Player player){
+    JSONObject playerObj = (JSONObject) loadedGame.get("player");
+
+    player.loadSave(playerObj);
   }
 
   public void loadSave(){
     JSONParser parser = new JSONParser();
     try (FileReader reader = new FileReader(path)) {
-        loadedGame = (JSONArray) parser.parse(reader);
+        Object loadedGameObj = parser.parse(reader);
+
+        loadedGame = (JSONObject) loadedGameObj;
 
         System.out.println(loadedGame);
     }catch (FileNotFoundException exc) {

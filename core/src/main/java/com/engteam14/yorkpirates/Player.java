@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import org.json.simple.JSONObject;
 
 public class Player extends GameObject {
 
@@ -225,5 +226,17 @@ public class Player extends GameObject {
       objectJSON.put("splashTime",splashTime);
       objectJSON.put("timeLastHit",timeLastHit);
     }
-}
 
+    @Override
+    public void loadSave(JSONObject objectJSON){
+      super.loadSave(objectJSON);
+      this.HEALTH = (int) ((long) objectJSON.get("HEALTH"));
+      this.damage = ((Double) objectJSON.get("damage")).floatValue();
+      this.previousDirectionX = (int) ((long) objectJSON.get("previousDirectionX"));
+      this.previousDirectionY = (int) ((long) objectJSON.get("previousDirectionY"));
+      this.distance = ((Double) objectJSON.get("distance")).floatValue();
+      this.lastMovementScore = (int) ((long) objectJSON.get("lastMovementScore"));
+      this.splashTime = ((Double) objectJSON.get("splashTime")).floatValue();
+      this.timeLastHit = (long) objectJSON.get("timeLastHit");
+    }
+}

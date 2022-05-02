@@ -149,4 +149,12 @@ public class GameObject {
     public String returnSaveString(){
       return objectJSON.toString();
     }
+
+    public void loadSave(JSONObject objectJSON){
+      this.x = ((Double) objectJSON.get("x")).floatValue();
+      this.y = ((Double) objectJSON.get("y")).floatValue();
+      this.maxHealth = (int) ((long) objectJSON.get("maxHealth"));
+      this.currentHealth = ((Double) objectJSON.get("currentHealth")).floatValue();
+      this.team = (String) objectJSON.get("team");
+    }
 }

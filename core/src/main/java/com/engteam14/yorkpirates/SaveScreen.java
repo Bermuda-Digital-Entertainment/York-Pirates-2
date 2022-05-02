@@ -50,6 +50,7 @@ public class SaveScreen extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("SAVE");
                 SaveLoad save = new SaveLoad("./testSave");
+                save.saveObject(screen.getPlayer());
                 save.saveSave();
             }
         });
@@ -59,6 +60,7 @@ public class SaveScreen extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) {
               SaveLoad save = new SaveLoad("./testSave");
               save.loadSave();
+              save.resumeSave(screen);
             }
         });
 
