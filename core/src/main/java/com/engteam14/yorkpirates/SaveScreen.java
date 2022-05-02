@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 
@@ -19,6 +20,7 @@ public class SaveScreen extends ScreenAdapter {
     private final YorkPirates game;
     private final GameScreen screen;
     private final Stage saveStage;
+    private TextField textBox;
 
     public SaveScreen(YorkPirates game, GameScreen screen){
         this.game = game;
@@ -49,7 +51,8 @@ public class SaveScreen extends ScreenAdapter {
         saveButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("SAVE");
-                SaveLoad save = new SaveLoad("./testSave");
+                String directory = getDir();
+                SaveLoad save = new SaveLoad(directory);
                 save.saveObject(screen.getPlayer());
                 save.saveColleges(screen.colleges);
                 save.saveBoats(screen.boats);
@@ -60,17 +63,27 @@ public class SaveScreen extends ScreenAdapter {
         TextButton loadButton = new TextButton("Load Game", skin);
         loadButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-              SaveLoad save = new SaveLoad("./testSave");
+              String directory = getDir();
+              SaveLoad save = new SaveLoad(directory);
               save.loadSave();
               save.resumeSave(screen);
             }
         });
+        textBox = new TextField("Directory", skin, "edges");
+        textBox.setAlignment(Align.center);
+        textBox.setOnlyFontChars(true);
+        textBox.addListener(new ClickListener() {
+            public void clicked(InputEvent event, float x, float y) {
+                textBox.setText("");
+            }});
 
         // Add title to table
         table.row();
         table.add(title).expand();
 
         // Add buttons to table
+        table.row();
+        table.add(textBox).expand();
         table.row();
         table.add(loadButton).expand();
         table.row();
@@ -102,7 +115,16 @@ public class SaveScreen extends ScreenAdapter {
             gameContinue();
         }
     }
+    private String getDir(){
+        String Dir;
+        if ( textBox.getText().equals("Directory") || textBox.getText().equals("")) {
+            Dir = "Directory";
 
+        } else{
+            Dir = textBox.getText();
+        }
+        return Dir;
+    }
     /**
      * Generates a HUD object within the game that controls elements of the UI.
      */

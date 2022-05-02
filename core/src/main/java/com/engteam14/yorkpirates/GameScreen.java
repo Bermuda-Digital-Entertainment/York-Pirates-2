@@ -52,6 +52,8 @@ public class GameScreen extends ScreenAdapter {
     private Vector3 followPos;
     private boolean followPlayer = false;
 
+    // Boats
+    private Texture boatHealthBar;
 
     // UI & Camera
     private HUD gameHUD;
@@ -128,6 +130,7 @@ public class GameScreen extends ScreenAdapter {
         //Initialise Boats
         boats = new Array<>();
         Array<Texture> boatSprites = new Array<>();
+        boatHealthBar = new Texture(Gdx.files.internal("enemyHealthBar.png"));
 
         // Add alcuin
         collegeSprites.add( new Texture("alcuin.png"),
@@ -232,12 +235,17 @@ public class GameScreen extends ScreenAdapter {
         // Draw Colleges
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).draw(game.batch, 0);
+
         }
 
 
         // Draw boats
         for (int i = 0; i < boats.size; i++) {
           boats.get(i).draw(game.batch, 0);
+          if(boats.get(i).currentHealth>0){
+            game.batch.draw(boatHealthBar, boats.get(i).x-16, boats.get(i).y+10, boats.get(i).currentHealth/100*32, 2);
+          }
+          else{assert true;}
         }
         fog.setX(player.x-(fog.getWidth()/2));
         fog.setY(player.y-(fog.getHeight()/2));
@@ -364,7 +372,7 @@ public class GameScreen extends ScreenAdapter {
     }
 
     public void gameSave(){
-        game.setScreen(new SaveScreen(game, this));
+        game.setScreen(new SaveScreen(game,this));
     }
     public void gameDifficulty(){
         game.setScreen(new DifficultyScreen(game, this));
