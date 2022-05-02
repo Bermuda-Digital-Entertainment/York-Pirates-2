@@ -66,14 +66,22 @@ public class SaveLoad {
 
   public void resumeSave(GameScreen screen){
     resumeObject(screen.getPlayer());
+    resumeCollege(screen.colleges, screen);
   }
 
   public void resumeObject(Player player){
     JSONObject playerObj = (JSONObject) loadedGame.get("player");
 
     player.loadSave(playerObj);
+  }
 
-
+  public void resumeCollege(Array<College> colleges, GameScreen screen){
+    JSONObject collegesObj = (JSONObject) loadedGame.get("colleges");
+    College college;
+    for(int i = 0; i < colleges.size; i++) {
+      college=colleges.get(i);
+      college.loadSave((JSONObject) collegesObj.get(Integer.toString(i)), screen);
+    }
   }
 
   public void loadSave(){
@@ -83,7 +91,7 @@ public class SaveLoad {
 
         loadedGame = (JSONObject) loadedGameObj;
 
-        System.out.println(loadedGame);
+        //System.out.println(loadedGame);
     }catch (FileNotFoundException exc) {
       ;
     }catch (IOException exc) {
