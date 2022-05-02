@@ -100,6 +100,7 @@ public class HUD {
         loot.setFontScale(1.2f);
         score.setFontScale(1.2f);
 
+
         // Create task related actors
         tasksTitle = new Label(screen.getPlayerName() + "'s Tasks:", skin);
         tasksTitle.setFontScale(0.5f, 0.5f);

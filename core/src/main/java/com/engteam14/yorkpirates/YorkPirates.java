@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class YorkPirates extends Game {
 
@@ -25,7 +26,8 @@ public class YorkPirates extends Game {
 	// Constants
 	public static final boolean DEBUG_ON = false; // Determines if the game runs in DEBUG mode.
 	private static final int SCREEN_TO_PIXEL_RATIO = 16; // Determines the pixel ratio of the game.
-
+	private static int xZoom = 32;
+	private static int yZoom = 18;
 	/**
 	 * Initialises base game class.
 	 */
@@ -37,7 +39,7 @@ public class YorkPirates extends Game {
 
 		// Initialise objects
 		camera = new OrthographicCamera();
-		camera.setToOrtho(false, 16* SCREEN_TO_PIXEL_RATIO, 9* SCREEN_TO_PIXEL_RATIO);
+		camera.setToOrtho(false,  xZoom * SCREEN_TO_PIXEL_RATIO, yZoom * SCREEN_TO_PIXEL_RATIO);
 		batch = new SpriteBatch();
 
 		// Get font from skin
@@ -103,11 +105,16 @@ public class YorkPirates extends Game {
 	 * @param width The new width of the screen in pixels
 	 * @param delta The new height of the screen in pixels
 	 */
-	@Override
-	public void resize(int width,int height){
-		camera.setToOrtho(false, width, height);
-	}
+	//@Override
+	//public void resize(int width,int height){
+//		camera.setToOrtho(false, width, height);
+//	}
 
+	public void updateZoom(int x,int y){
+		xZoom = x;
+		yZoom = y;
+		camera.setToOrtho(false,  xZoom * SCREEN_TO_PIXEL_RATIO, yZoom * SCREEN_TO_PIXEL_RATIO);
+	}
 
 	/**
 	 * Closes the application

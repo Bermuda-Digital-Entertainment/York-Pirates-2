@@ -91,7 +91,7 @@ public class College extends GameObject {
                 if (TimeUtils.timeSinceMillis(lastShotFired) > shootFrequency){
                     lastShotFired = TimeUtils.millis();
                     Array<Texture> sprites = new Array<>();
-                    sprites.add(new Texture("tempProjectile.png"));
+                    sprites.add(new Texture("fire_ball.png"));
                     screen.projectiles.add(new Projectile(sprites, 0, this, playerX, playerY, team));
                 }
             }else if(Objects.equals(collegeName, "Home")){
