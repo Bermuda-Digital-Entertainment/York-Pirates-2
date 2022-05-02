@@ -14,16 +14,23 @@ import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 
-public class PauseScreen extends ScreenAdapter {
+public class SaveScreen extends ScreenAdapter {
 
     private final YorkPirates game;
     private final GameScreen screen;
-    private final Stage pauseStage;
+    private final Stage saveStage;
 
-    public PauseScreen(YorkPirates game, GameScreen screen){
+    public SaveScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
+        
 
+
+        //Generate Title 
+        String imageN;
+        imageN="paused.png";
+        Texture titleT = new Texture(Gdx.files.internal(imageN));
+        Image title = new Image(titleT);
         // Generate skin
         TextureAtlas atlas;
         atlas = new TextureAtlas(Gdx.files.internal("Skin/YorkPiratesSkin.atlas"));
@@ -31,48 +38,24 @@ public class PauseScreen extends ScreenAdapter {
         skin.addRegions(atlas);
 
         // Generate stage and table
-        pauseStage = new Stage(screen.getViewport());
-        Gdx.input.setInputProcessor(pauseStage);
+        saveStage = new Stage(screen.getViewport());
         Table table = new Table();
         table.setFillParent(true);
-        table.setTouchable(Touchable.enabled);
+        Gdx.input.setInputProcessor(saveStage);
         table.setBackground(skin.getDrawable("Selection"));
         if(YorkPirates.DEBUG_ON) table.setDebug(true);
 
-        // Generate title texture
-        Texture titleT = new Texture(Gdx.files.internal("paused.png"));
-        Image title = new Image(titleT);
-        title.setScaling(Scaling.fit);
-
-        // Generate buttons
-        TextButton resume = new TextButton("Resume", skin);
-        resume.addListener(new ClickListener() {
+        TextButton saveButton = new TextButton("Save Game", skin);
+        saveButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                gameContinue();
+                
             }
         });
 
-        TextButton restart = new TextButton("End Game", skin);
-        restart.addListener(new ClickListener() {
+        TextButton loadButton = new TextButton("Load Game", skin);
+        loadButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
-                screen.gameEnd(false);
-
-            }
-        });
-
-        TextButton loadSave = new TextButton("Save/Load", skin);
-        loadSave.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                screen.gameSave();
-                screen.setPaused(true);
-            }
-        });
-
-        TextButton quit = new TextButton("Quit", skin);
-        quit.addListener(new ClickListener() {
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-
+                
             }
         });
 
@@ -82,29 +65,26 @@ public class PauseScreen extends ScreenAdapter {
 
         // Add buttons to table
         table.row();
-        table.add(resume).expand();
+        table.add(loadButton).expand();
         table.row();
-        table.add(restart).expand();
-        table.row();
-        table.add(loadSave).expand();
-        table.row();
-        table.add(quit).expand();
+        table.add(saveButton).expand();
 
         // Add table to the stage
-        pauseStage.addActor(table);
+        saveStage.addActor(table);
+
     }
 
-    /**
+        /**
      * Is called once every frame. Runs update() and then renders the title screen.
      * @param delta The time passed since the previously rendered frame.
      */
     @Override
     public void render(float delta){
-        Gdx.input.setInputProcessor(pauseStage);
+        Gdx.input.setInputProcessor(saveStage);
         update();
         ScreenUtils.clear(0.6f, 0.6f, 1.0f, 1.0f);
         screen.render(delta); // Draws the gameplay screen as a background
-        pauseStage.draw(); // Draws the stage
+        saveStage.draw(); // Draws the stage
     }
 
     /**
@@ -123,4 +103,5 @@ public class PauseScreen extends ScreenAdapter {
         screen.setPaused(false);
         game.setScreen(screen);
     }
+        
 }

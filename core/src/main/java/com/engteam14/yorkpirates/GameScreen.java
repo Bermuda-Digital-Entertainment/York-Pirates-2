@@ -366,6 +366,10 @@ public class GameScreen extends ScreenAdapter {
     public void gameShop(){
         game.setScreen(new ShopScreen(game, this));
     }
+    
+    public void gameSave(){
+        game.setScreen(new SaveScreen(game, this));
+    }
     public void gameDifficulty(){
         game.setScreen(new DifficultyScreen(game, this));
     }
