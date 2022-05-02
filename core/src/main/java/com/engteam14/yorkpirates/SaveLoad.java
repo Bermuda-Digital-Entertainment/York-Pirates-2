@@ -67,6 +67,7 @@ public class SaveLoad {
   public void resumeSave(GameScreen screen){
     resumeObject(screen.getPlayer());
     resumeCollege(screen.colleges, screen);
+    resumeBoat(screen.boats);
   }
 
   public void resumeObject(Player player){
@@ -81,6 +82,15 @@ public class SaveLoad {
     for(int i = 0; i < colleges.size; i++) {
       college=colleges.get(i);
       college.loadSave((JSONObject) collegesObj.get(Integer.toString(i)), screen);
+    }
+  }
+
+  public void resumeBoat(Array<Boat> boats){
+    JSONObject boatsObj = (JSONObject) loadedGame.get("boats");
+    Boat boat;
+    for(int i = 0; i < boats.size; i++) {
+      boat=boats.get(i);
+      boat.loadSave((JSONObject) boatsObj.get(Integer.toString(i)));
     }
   }
 
