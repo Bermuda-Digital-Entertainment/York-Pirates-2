@@ -27,8 +27,8 @@ public class Boat extends GameObject {
   public Boat(Array<Texture> frames, float x, float y, float scale, String team, Player player){
     super(frames, 0, x, y, frames.get(0).getWidth()*scale, frames.get(0).getHeight()*scale, team);
     this.player=player;
-    this.currentHealth=50;
-    this.maxHealth=50;
+    this.currentHealth=100;
+    this.maxHealth=100;
     this.timeLastShot=0f;
     this.timeBetweenShots=2f;
     this.speed=50;
