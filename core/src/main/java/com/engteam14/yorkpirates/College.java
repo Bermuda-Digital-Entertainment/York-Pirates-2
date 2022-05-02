@@ -235,4 +235,12 @@ public class College extends GameObject {
       objectJSON.put("splashTime",splashTime);
       objectJSON.put("lastShotFired",lastShotFired);
     }
+
+    /** Loads the JSON from a college save*/
+    @Override
+    public void loadSave(JSONObject objectJSON){
+      super.loadSave(objectJSON);
+      splashTime = ((Double) objectJSON.get("splashTime")).floatValue();
+      lastShotFired = (long) objectJSON.get("lastShotFired");
+    }
 }

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
+import org.json.simple.JSONObject;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
@@ -118,5 +119,21 @@ public class Boat extends GameObject {
 
   public void takeDamage(float damage){
     currentHealth-=damage;
+  }
+
+  @Override
+  public void genSave(){
+    super.genSave();
+    objectJSON.put("speed", speed);
+    objectJSON.put("timeLastShot", timeLastShot);
+    objectJSON.put("timeBetweenShots", timeBetweenShots);
+  }
+
+  @Override
+  public void loadSave(JSONObject objectJSON){
+    super.loadSave(objectJSON);
+    objectJSON.get("speed");
+    objectJSON.get("timeLastShot");
+    objectJSON.get("timeBetweenShots");
   }
 }

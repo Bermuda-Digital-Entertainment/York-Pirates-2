@@ -51,7 +51,7 @@ public class GameScreen extends ScreenAdapter {
     private String playerName;
     private Vector3 followPos;
     private boolean followPlayer = false;
-    
+
 
     // UI & Camera
     private HUD gameHUD;
@@ -187,12 +187,8 @@ public class GameScreen extends ScreenAdapter {
 
         // Load the fog texture
         fog = new Sprite(new Texture(Gdx.files.internal("fog.png")));
-        
+
         startTimeStamp = Instant.now().getEpochSecond();
-
-        
-        
-
     }
 
 
@@ -266,11 +262,11 @@ public class GameScreen extends ScreenAdapter {
                     fogDecider = 0;
                     fogLengthDecider = 0;
                 }
-                else{assert true;}                            
+                else{assert true;}
             }
         }
         else{assert true;}
-        
+
         game.batch.end();
 
 
@@ -366,7 +362,7 @@ public class GameScreen extends ScreenAdapter {
     public void gameShop(){
         game.setScreen(new ShopScreen(game, this));
     }
-    
+
     public void gameSave(){
         game.setScreen(new SaveScreen(game, this));
     }

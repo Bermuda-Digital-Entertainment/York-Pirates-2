@@ -1,6 +1,6 @@
-
 package com.engteam14.yorkpirates;
 
+import com.badlogic.gdx.utils.Array;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -37,10 +37,21 @@ public class SaveLoad {
     savedGame.put("player", object.returnSave());
   }
 
-  // public void saveObject(GameScreen screen){
-  //   object.genSave();
-  //   savedGame.put(object.getName(), object.returnSave());
-  // }
+  public void saveObject(Boat object){
+    object.genSave();
+    savedGame.put("player", object.returnSave());
+  }
+
+  public void saveObject(Array<College> objects){
+    College college;
+    JSONObject savedColleges = new JSONObject();
+    for(int i = 0; i < objects.size; i++) {
+      college = objects.get(i);
+      college.genSave();
+      savedColleges.put(i, college.returnSaveString());
+    }
+    savedGame.put("colleges", savedColleges.toString());
+  }
 
   public void resumeSave(GameScreen screen){
     resumeObject(screen.getPlayer());
@@ -50,6 +61,8 @@ public class SaveLoad {
     JSONObject playerObj = (JSONObject) loadedGame.get("player");
 
     player.loadSave(playerObj);
+
+
   }
 
   public void loadSave(){

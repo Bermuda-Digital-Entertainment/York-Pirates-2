@@ -51,6 +51,7 @@ public class SaveScreen extends ScreenAdapter {
                 System.out.println("SAVE");
                 SaveLoad save = new SaveLoad("./testSave");
                 save.saveObject(screen.getPlayer());
+                save.saveObject(screen.colleges);
                 save.saveSave();
             }
         });
