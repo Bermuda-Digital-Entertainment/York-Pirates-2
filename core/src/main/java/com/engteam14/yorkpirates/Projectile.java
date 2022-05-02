@@ -76,7 +76,7 @@ public class Projectile extends GameObject{
             for(int i = 0; i < screen.boats.size; i++) {
                 if (overlaps(screen.boats.get(i).hitBox)){
                     if(!Objects.equals(team, screen.boats.get(i).team)){ // Checks if projectile and college are on the same time
-                        screen.boats.get(i).takeDamage(10);
+                        screen.boats.get(i).takeDamage(5);
                     }
                     destroy(screen);
                 }
