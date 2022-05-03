@@ -306,6 +306,8 @@ public class GameScreen extends ScreenAdapter {
             projectiles.get(i).draw(game.batch, 0);
         }
 
+
+        
         // Draw PowerUps
         for(int i = 0; i<powerUps.size; i++){
             if(powerUps.get(i).collides(game.batch, player)==false){
@@ -349,6 +351,15 @@ public class GameScreen extends ScreenAdapter {
             }
         } 
 
+        // Draw boats
+        for(int i = 0; i < boats.size; i++) {
+            boats.get(i).draw(game.batch, 0);
+            if(boats.get(i).currentHealth>0){
+              game.batch.draw(boatHealthBar, boats.get(i).x-16, boats.get(i).y+10, boats.get(i).currentHealth/100*32, 2);
+            }
+            else{assert true;}
+        }
+        
         // Draw Player, Player Health and Player Name
         if(!isPaused) {
             player.drawHealthBar(game.batch);
@@ -358,15 +369,6 @@ public class GameScreen extends ScreenAdapter {
             game.font.draw(HUDBatch, playerName, pos.x, pos.y + 170f, 1f, Align.center, true);
             HUDBatch.end();
         }
-
-        // Draw boats
-        for (int i = 0; i < boats.size; i++) {
-            boats.get(i).draw(game.batch, 0);
-            if(boats.get(i).currentHealth>0){
-              game.batch.draw(boatHealthBar, boats.get(i).x-16, boats.get(i).y+10, boats.get(i).currentHealth/100*32, 2);
-            }
-            else{assert true;}
-          }
 
         // Draw Colleges
         for(int i = 0; i < colleges.size; i++) {
