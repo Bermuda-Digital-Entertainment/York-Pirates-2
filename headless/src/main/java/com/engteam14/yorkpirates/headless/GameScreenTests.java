@@ -9,8 +9,8 @@ import static org.junit.Assert.assertTrue;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 
-import com.engteam14.yorkpirates.College;
-import com.engteam14.yorkpirates.Player;
+import com.engteam14.yorkpirates.GameScreen;
+import com.engteam14.yorkpirates.YorkPirates;
 
 /** This is a class to test that as much of the GameScreen code as possible, works. */
 @RunWith(HeadlessLauncher.class)
@@ -19,8 +19,6 @@ public class GameScreenTests {
 
   @Test
   public void testScreenInit() throws Exception {
-
+    //GameScreen screen = new GameScreen(new YorkPirates());
   }
-
-
 }
