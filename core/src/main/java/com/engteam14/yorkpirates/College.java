@@ -121,7 +121,7 @@ public class College extends GameObject {
      */
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
         currentHealth -= damage;
-        doBloodSplash = true;
+        doBloodSplash = false;
 
         if(currentHealth > 0){
             collegeBar.resize(currentHealth);
@@ -182,12 +182,12 @@ public class College extends GameObject {
      */
     @Override
     public void draw(SpriteBatch batch, float elapsedTime){
-        if(doBloodSplash){
-          //batch.setShader(shader);// Set red shader to the batch
-        }
-        else{
-          batch.setShader(null);
-        }
+        // if(doBloodSplash){
+        //   //batch.setShader(shader);// Set red shader to the batch
+        // }
+        // else{
+        batch.setShader(null);
+        // }
 
         // Draw college
         batch.draw(anim.getKeyFrame(elapsedTime, true), x - width/2, y - height/2, width, height);
