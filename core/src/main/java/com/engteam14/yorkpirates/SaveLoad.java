@@ -64,10 +64,15 @@ public class SaveLoad {
     savedGame.put("boats", savedBoats);
   }
 
+  public void saveScreen(GameScreen screen){
+    savedGame.put("screen", screen.saveScreen());
+  }
+
   public void resumeSave(GameScreen screen){
     resumeObject(screen.getPlayer());
     resumeCollege(screen.colleges, screen);
     resumeBoat(screen.boats);
+    resumeScreen(screen);
   }
 
   public void resumeObject(Player player){
@@ -92,6 +97,12 @@ public class SaveLoad {
       boat=boats.get(i);
       boat.loadSave((JSONObject) boatsObj.get(Integer.toString(i)));
     }
+  }
+
+  public void resumeScreen(GameScreen screen){
+    JSONObject screenObj = (JSONObject) loadedGame.get("screen");
+    System.out.println(screenObj);
+    screen.loadSave(screenObj);
   }
 
   public void loadSave(){

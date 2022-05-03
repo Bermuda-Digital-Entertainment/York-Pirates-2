@@ -41,6 +41,14 @@ public class ScoreManager {
     }
 
     /**
+     *  Sets the score value
+     * @param New score.
+     */
+    public void Set(int newScore){
+        this.score = newScore;
+    }
+
+    /**
      *  Gets the score value in string form.
      * @return  the score.
      */
