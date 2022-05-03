@@ -213,7 +213,7 @@ public class GameScreen extends ScreenAdapter {
         //Add Constantine
         collegeSprites.add( new Texture("constantine.png"),
                             new Texture("constantine_2.png"));
-        newCollege = (new College(collegeSprites, 500, 1580, 0.7f,"Constantine", enemyTeam, player, "langwith_boat.png"));
+        newCollege = (new College(collegeSprites, 500, 1580, 0.7f,"Constantine", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -227,7 +227,7 @@ public class GameScreen extends ScreenAdapter {
         //Add James
         collegeSprites.add( new Texture("james.png"),
                             new Texture("james_2.png"));
-        newCollege = (new College(collegeSprites, 700, 2180, 0.7f,"James", enemyTeam, player, "langwith_boat.png"));
+        newCollege = (new College(collegeSprites, 700, 2180, 0.7f,"James", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
