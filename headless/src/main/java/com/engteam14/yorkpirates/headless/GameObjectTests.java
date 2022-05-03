@@ -19,7 +19,7 @@ public class GameObjectTests {
   /** Creates a basic GameObject for tests to be run on
   *   @return Returns a functional GameObject
   */
-  protected GameObject createGameObject(){
+  public GameObject createGameObject(){
     Array<Texture>testTexture = new Array<>();
     GameObject testObject;
     testTexture.add(new Texture("alcuin_2.png"));
