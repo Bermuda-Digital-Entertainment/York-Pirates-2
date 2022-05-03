@@ -117,7 +117,7 @@ public class Player extends GameObject {
      * @param edges A 2d array containing safe/unsafe positions to be in.
      * @return      If the current position is safe.
      */
-    private Boolean safeMove(Array<Array<Boolean>> edges){
+    public Boolean safeMove(Array<Array<Boolean>> edges){
         return (
                         edges.get((int)((y+height/2)/16)).get((int)((x+width/2)/16)) &&
                         edges.get((int)((y+height/2)/16)).get((int)((x-width/2)/16)) &&

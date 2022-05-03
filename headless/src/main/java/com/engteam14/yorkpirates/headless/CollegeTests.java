@@ -33,5 +33,10 @@ public class CollegeTests {
     College testCollege = createCollege("TestCollegePleaseIgnore", "Red");
   }
 
+  @Test
+  public void testGetName() {
+    College testCollege = createCollege("TestCollegePleaseIgnore", "Red");
+    assertTrue("The college name is TestCollegePleaseIgnore", "TestCollegePleaseIgnore"==testCollege.getName());
+  }
 
 }
