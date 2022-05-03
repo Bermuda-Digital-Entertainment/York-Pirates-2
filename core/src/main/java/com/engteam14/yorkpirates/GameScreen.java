@@ -39,6 +39,10 @@ public class GameScreen extends ScreenAdapter {
     public Array<College> colleges;
     public Array<Boat> boats;
     public Array<Projectile> projectiles;
+    // Power Ups
+    public Array<PowerUp> powerUps;
+    public Boolean immunity = false;
+    private float immunityTimer = 0f;
 
     // Sound
     public Music music;
@@ -115,6 +119,36 @@ public class GameScreen extends ScreenAdapter {
         followPos = new Vector3(player.x, player.y, 0f);
         game.camera.position.lerp(new Vector3(760, 510, 0f), 1f);
 
+        // Initialise Power Ups
+        powerUps = new Array<>();
+        PowerUp newPowerUp;
+        Array<Texture> powerUpSprites = new Array<>();
+
+        // Add damage boost
+        powerUpSprites.add(new Texture("damageBoost.png"));
+        newPowerUp = new PowerUp(powerUpSprites, 1, 1500, 700, 20 , 32, enemyTeam, "DamageBoost");
+        powerUps.add(newPowerUp);
+        powerUpSprites.clear();
+        // Add Max Health
+        powerUpSprites.add(new Texture("maxHealthUp.png"));
+        newPowerUp = new PowerUp(powerUpSprites, 1, 300, 1000, 20 , 32, enemyTeam, "MaxHealth");
+        powerUps.add(newPowerUp);
+        powerUpSprites.clear();
+        // Add Immunity
+        powerUpSprites.add(new Texture("immunity.png"));
+        newPowerUp = new PowerUp(powerUpSprites, 1, 900, 1500, 20 , 32, enemyTeam, "Immunity");
+        powerUps.add(newPowerUp);
+        powerUpSprites.clear();
+        // Add Heal
+        powerUpSprites.add(new Texture("currentHealthUp.png"));
+        newPowerUp = new PowerUp(powerUpSprites, 1, 1000, 2000, 20 , 32, enemyTeam, "Heal");
+        powerUps.add(newPowerUp);
+        powerUpSprites.clear();
+        // Add Speed
+        powerUpSprites.add(new Texture("speed.png"));
+        newPowerUp = new PowerUp(powerUpSprites, 1, 600, 750, 20 , 32, enemyTeam, "SpeedBoost");
+        powerUps.add(newPowerUp);
+        powerUpSprites.clear();
 
 
         // Initialise tilemap
@@ -189,7 +223,7 @@ public class GameScreen extends ScreenAdapter {
         projectiles = new Array<>();
 
         // Load the fog texture
-        fog = new Sprite(new Texture(Gdx.files.internal("fog.png")));
+        fog = new Sprite(new Texture(Gdx.files.internal("fog(1).png")));
         
         startTimeStamp = Instant.now().getEpochSecond();
 
@@ -251,6 +285,27 @@ public class GameScreen extends ScreenAdapter {
           }
           else{assert true;}
         }
+        // Draw PowerUps
+        for(int i = 0; i<powerUps.size; i++){
+            if(powerUps.get(i).collides(game.batch, player)==false){
+                powerUps.get(i).draw(game.batch, 0);
+            }
+            else{
+                if(powerUps.get(i).power == "DamageBoost"){player.addDamage();}
+                else if(powerUps.get(i).power == "MaxHealth"){player.addHealth();}
+                else if(powerUps.get(i).power == "Heal"){player.heal(75);}
+                else if(powerUps.get(i).power == "SpeedBoost"){player.addSpeed();}
+                else if(powerUps.get(i).power == "Immunity"){immunity = true;}
+                powerUps.removeIndex(i);
+            }
+        }
+        if(immunity == true && immunityTimer ==0){
+            immunityTimer = Instant.now().getEpochSecond();
+        }
+        else if(immunity == true && Instant.now().getEpochSecond()-immunityTimer >25){
+            immunity = false;
+        }
+        else{assert true;}
         fog.setX(player.x-(fog.getWidth()/2));
         fog.setY(player.y-(fog.getHeight()/2));
 
@@ -259,7 +314,7 @@ public class GameScreen extends ScreenAdapter {
         }
         else{assert true;}
 
-        if(Instant.now().getEpochSecond() - startTimeStamp > 10){
+        if(Instant.now().getEpochSecond() - startTimeStamp > 10 && difficulty>1){
             fog.draw(game.batch, 1f);
             if(counterStarted==false){
                 fogCounter = Instant.now().getEpochSecond();

@@ -28,7 +28,7 @@ public class ShopScreen extends ScreenAdapter {
 
         //Generate Title 
         String imageN;
-        imageN="paused.png";
+        imageN="shop_title.png";
         Texture titleT = new Texture(Gdx.files.internal(imageN));
         Image title = new Image(titleT);
         // Generate skin
