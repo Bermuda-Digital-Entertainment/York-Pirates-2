@@ -19,6 +19,6 @@ public class GameScreenTests {
 
   @Test
   public void testScreenInit() throws Exception {
-    //GameScreen screen = new GameScreen(new YorkPirates());
+    GameScreen screen = new GameScreen(new YorkPirates());
   }
 }
