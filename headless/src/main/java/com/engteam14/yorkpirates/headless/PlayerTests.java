@@ -16,8 +16,8 @@ import com.engteam14.yorkpirates.Player;
 @RunWith(HeadlessLauncher.class)
 public class PlayerTests {
 
-  /** Creates a basic GameObject for tests to be run on
-  *   @return Returns a functional GameObject
+  /** Creates a basic Player objects for tests to be run on
+  *   @return Returns a functional Player
   */
   protected Player createPlayer(){
     Array<Texture>testTexture = new Array<>();
