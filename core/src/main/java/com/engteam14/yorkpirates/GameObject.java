@@ -105,6 +105,10 @@ public class GameObject {
         hitBox.y = y - height/2;
     }
 
+    public Rectangle getHitBox(){
+      return hitBox;
+    }
+
     /**
      * Checks if this object overlaps with another.
      * @param rect  The other object to be checked against.

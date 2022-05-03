@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
@@ -64,5 +65,18 @@ public class GameObjectTests {
     testObject.move(15f,20f);
     assertTrue("End X position is correct", testObject.x > 12f);
     assertTrue("End Y position is correct", testObject.y > 10f);
+  }
+
+  /**Tests that the overlaps method works correctly (between two GameObjects)
+  */
+  @Test
+  public void testOverlaps() throws Exception {
+    GameObject testObject1 = createGameObject();
+    GameObject testObject2 = createGameObject();
+    assertTrue("testObject1 overlaps testObject2",testObject1.overlaps(testObject2.getHitBox()));
+    assertTrue("testObject2 overlaps testObject1",testObject2.overlaps(testObject1.getHitBox()));
+    testObject1.x=200f;//Makes sure the two definitely are not overlapping
+    assertFalse("testObject1 no longer overlaps testObject2",testObject1.overlaps(testObject2.getHitBox()));
+    assertFalse("testObject2 no longer overlaps testObject1",testObject2.overlaps(testObject1.getHitBox()));
   }
 }
