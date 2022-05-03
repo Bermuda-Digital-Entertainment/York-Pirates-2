@@ -15,11 +15,54 @@ import com.engteam14.yorkpirates.GameObject;
 @RunWith(HeadlessLauncher.class)
 public class GameObjectTests {
 
-  @Test
-  public void testGameObjectInit() throws Exception {
+  /** Creates a basic GameObject for tests to be run on
+  *   @return Returns a functional GameObject
+  */
+  public GameObject createGameObject(){
     Array<Texture>testTexture = new Array<>();
     GameObject testObject;
     testTexture.add(new Texture("alcuin_2.png"));
     testObject = new GameObject(testTexture, 0, 12, 10, 180, 158, "red");
+    return testObject;
+  }
+
+  /**Tests GameObject class can be instantiated without causing the game to crash
+  */
+  @Test
+  public void testGameObjectInit() throws Exception {
+    GameObject testObject = createGameObject();
+  }
+
+  /**Tests that the setMaxHealth method works
+  */
+  @Test
+  public void testSetMaxHealth(){
+    GameObject testObject = createGameObject();
+    testObject.setMaxHealth(25);
+    assertTrue("Tests that the setMaxHealth method works", 25 == testObject.maxHealth);
+    assertTrue("Tests that the setMaxHealth method works", 25f == testObject.currentHealth);
+  }
+
+  /**Tests that the takeDamage method works and only subtracts from currentHealth (not maxHealth)
+  */
+  @Test
+  public void testTakeDamage(){
+    GameObject testObject = createGameObject();
+    testObject.setMaxHealth(25);
+    testObject.takeDamage(5f);
+    assertTrue("Tests that the takeDamage method only subtracts from currentHealth (not maxHealth)", 25 == testObject.maxHealth);
+    assertTrue("Tests that the takeDamage method works and only subtracts from currentHealth", 20f == testObject.currentHealth);
+  }
+
+  /**Tests move method works correctly
+  */
+  @Test
+  public void testMove() throws Exception {
+    GameObject testObject = createGameObject();
+    assertTrue("Starting X position is correct", testObject.x == 12f);
+    assertTrue("Starting Y position is correct", testObject.y == 10f);
+    testObject.move(15f,20f);
+    assertTrue("End X position is correct", testObject.x > 12f);
+    assertTrue("End Y position is correct", testObject.y > 10f);
   }
 }

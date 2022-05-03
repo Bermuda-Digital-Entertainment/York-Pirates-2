@@ -73,7 +73,7 @@ public class GameObject {
      * @param damage            The damage dealt by the projectile.
      * @param projectileTeam    The team of the projectile.
      */
-    public void takeDamage(GameScreen screen, float damage, String projectileTeam){
+    public void takeDamage(float damage){
         currentHealth -= damage;
     }
 

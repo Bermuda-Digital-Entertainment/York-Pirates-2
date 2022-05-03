@@ -119,7 +119,6 @@ public class College extends GameObject {
      * @param damage            The damage dealt by the projectile.
      * @param projectileTeam    The team of the projectile.
      */
-    @Override
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
         currentHealth -= damage;
         doBloodSplash = true;

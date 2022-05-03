@@ -121,9 +121,6 @@ public class Boat extends GameObject {
     return abs(this.x - player.x) < (Gdx.graphics.getWidth()/5f) && abs(this.y - player.y) < (Gdx.graphics.getHeight()/5f);
   }
 
-  public void takeDamage(float damage){
-    currentHealth-=damage;
-  }
   @Override
   public void draw(SpriteBatch batch, float elapsedTime){
     if(currentHealth>0){
