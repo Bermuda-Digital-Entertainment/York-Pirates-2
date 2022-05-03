@@ -21,7 +21,7 @@ public class Boat extends GameObject {
 
   protected Float timeLastShot;     //Time since last shot
   protected Float timeBetweenShots; //Minimum time between shots
-
+  private Array<Texture> frame;
   protected Float lastXMove;
   protected Float lastYMove;
 
@@ -35,6 +35,10 @@ public class Boat extends GameObject {
     this.speed=50;
     this.lastXMove=0f;
     this.lastYMove=0f;
+    frame = new Array<>();
+    for(int i = 0; i < frames.size; i++) {
+        frame.add(frames.get(i));
+    }
   }
 
 
@@ -119,6 +123,13 @@ public class Boat extends GameObject {
 
   public void takeDamage(float damage){
     currentHealth-=damage;
+  }
+  @Override
+  public void draw(SpriteBatch batch, float elapsedTime){
+    if(currentHealth>0){
+      batch.draw(frame.get(0), x - width/2, y - height/2, width, height);
+    }
+    else{batch.draw(frame.get(1), x - width/2, y - height/2, width, height);}
   }
 
   @Override

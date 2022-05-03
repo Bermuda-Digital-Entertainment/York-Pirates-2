@@ -232,7 +232,7 @@ public class Player extends GameObject {
 
     //** Adds to the speed of the player */
     public void addSpeed(){
-        SPEED += 40f;
+        SPEED += 30f;
     }
     public void setDamage(int amount){
         damage = amount;
