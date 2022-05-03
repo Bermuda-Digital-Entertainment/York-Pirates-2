@@ -11,15 +11,12 @@ public class Obstacle extends GameObject {
     public Array<Texture> frame;
     public Boolean collision = false;
     public String power;
-    private Boolean hostile = true;
+    public Boolean hostile;
 
     public Obstacle(Array<Texture> frames, float fps, float x, float y, float width, float height, String team, String power) {
         super(frames, fps, x, y, width, height, team);
-        //Max Health Up
-        //Heal (Current Health Up)
-        //Damage Boost
-        //Speed Boost
-        //Fire Rate Up
+        // dead water
+        // hostile wreck
         this.hostile = true;
         this.power = power;
         frame = new Array<>();

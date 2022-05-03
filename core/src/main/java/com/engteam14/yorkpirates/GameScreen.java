@@ -41,10 +41,14 @@ public class GameScreen extends ScreenAdapter {
     public Array<College> colleges;
     public Array<Boat> boats;
     public Array<Projectile> projectiles;
+
     // Power Ups
     public Array<PowerUp> powerUps;
     public Boolean immunity = false;
     private float immunityTimer = 0f;
+    
+    // Obstacles
+    public Array<Obstacle> obstacles;
 
     // Sound
     public Music music;
@@ -123,35 +127,47 @@ public class GameScreen extends ScreenAdapter {
 
         // Initialise Power Ups
         powerUps = new Array<>();
-        PowerUp newPowerUp;
         Array<Texture> powerUpSprites = new Array<>();
 
         // Add damage boost
         powerUpSprites.add(new Texture("damageBoost.png"));
-        newPowerUp = new PowerUp(powerUpSprites, 1, 1500, 700, 20 , 32, enemyTeam, "DamageBoost");
-        powerUps.add(newPowerUp);
+        powerUps.add(new PowerUp(powerUpSprites, 1, 1500, 700, 20 , 32, enemyTeam, "DamageBoost"));
         powerUpSprites.clear();
         // Add Max Health
         powerUpSprites.add(new Texture("maxHealthUp.png"));
-        newPowerUp = new PowerUp(powerUpSprites, 1, 300, 1000, 20 , 32, enemyTeam, "MaxHealth");
-        powerUps.add(newPowerUp);
+        powerUps.add(new PowerUp(powerUpSprites, 1, 300, 1000, 20 , 32, enemyTeam, "MaxHealth"));
         powerUpSprites.clear();
         // Add Immunity
         powerUpSprites.add(new Texture("immunity.png"));
-        newPowerUp = new PowerUp(powerUpSprites, 1, 900, 1500, 20 , 32, enemyTeam, "Immunity");
-        powerUps.add(newPowerUp);
+        powerUps.add(new PowerUp(powerUpSprites, 1, 900, 1500, 20 , 32, enemyTeam, "Immunity"));
         powerUpSprites.clear();
         // Add Heal
         powerUpSprites.add(new Texture("currentHealthUp.png"));
-        newPowerUp = new PowerUp(powerUpSprites, 1, 1100, 2000, 20 , 32, enemyTeam, "Heal");
-        powerUps.add(newPowerUp);
+        powerUps.add(new PowerUp(powerUpSprites, 1, 1100, 2000, 20 , 32, enemyTeam, "Heal"));
         powerUpSprites.clear();
         // Add Speed
         powerUpSprites.add(new Texture("speed.png"));
-        newPowerUp = new PowerUp(powerUpSprites, 1, 600, 750, 20 , 32, enemyTeam, "SpeedBoost");
-        powerUps.add(newPowerUp);
+        powerUps.add(new PowerUp(powerUpSprites, 1, 600, 750, 20 , 32, enemyTeam, "SpeedBoost"));
         powerUpSprites.clear();
 
+        //Initialise Obstacles
+        obstacles = new Array<>();
+        Array<Texture> obstacleSprites = new Array<>();
+
+        // Add hostile wrecks
+        obstacleSprites.add(new Texture("hostile_wreck.png"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 1300, 750, 32 , 50, enemyTeam, "HostileWreck"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 700, 586, 32 , 50, enemyTeam, "HostileWreck"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 643, 1700, 32 , 50, enemyTeam, "HostileWreck"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 786, 1300, 32 , 50, enemyTeam, "HostileWreck"));
+        obstacleSprites.clear();
+        // Add Dead Waters
+        obstacleSprites.add(new Texture("dead_water.png"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 600, 600, 50 , 50, enemyTeam, "DeadWater"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 900, 1354, 50 , 50, enemyTeam, "DeadWater"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 765, 890, 50 , 50, enemyTeam, "DeadWater"));
+        obstacles.add(new Obstacle(obstacleSprites, 1, 1534, 1923, 50 , 50, enemyTeam, "DeadWater"));
+        obstacleSprites.clear();
 
         // Initialise tilemap
         tiledMap = new TmxMapLoader().load("FINAL_MAP.tmx");
@@ -180,6 +196,8 @@ public class GameScreen extends ScreenAdapter {
                         new Texture("shipwreck.png"));
         boats.add(new Boat(boatSprites, 1492f+80f, 665f-20f, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 1492f-80f, 665f+40f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1300, 700, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1210, 650, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         // Add derwent
@@ -194,6 +212,8 @@ public class GameScreen extends ScreenAdapter {
                          new Texture("shipwreck.png"));
         boats.add(new Boat(boatSprites, 1815f-120f, 2105f+20f, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 1815f-80f, 2105f+40f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1815f-100f, 2105f+40f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1815f+800f, 2105f+40f, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         // Add langwith
@@ -208,6 +228,8 @@ public class GameScreen extends ScreenAdapter {
                         new Texture("shipwreck.png"));
         boats.add(new Boat(boatSprites, 1300f+120f, 1530f+20f, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 1300f+80f, 1530f+40f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1300f-120f, 1530f+20f, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 1300f-80f, 1530f+40f, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         //Add Constantine
@@ -218,10 +240,12 @@ public class GameScreen extends ScreenAdapter {
         collegeSprites.clear();
 
         //Add Constantine Boats
-        boatSprites.add(new Texture("langwith_boat.png"),
+        boatSprites.add(new Texture("constantine_boat.png"),
                         new Texture("shipwreck.png"));
         boats.add(new Boat(boatSprites, 680, 1600, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 600, 1300, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 650, 1500, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 690, 1400, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
         //Add James
@@ -232,10 +256,12 @@ public class GameScreen extends ScreenAdapter {
         collegeSprites.clear();
 
         //Add James Boats
-        boatSprites.add(new Texture("langwith_boat.png"),
+        boatSprites.add(new Texture("james_boat.png"),
                         new Texture("shipwreck.png"));
         boats.add(new Boat(boatSprites, 800, 2300, 0.25f, enemyTeam, player));
         boats.add(new Boat(boatSprites, 650, 1800, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 750, 2200, 0.25f, enemyTeam, player));
+        boats.add(new Boat(boatSprites, 670, 1900, 0.25f, enemyTeam, player));
         boatSprites.clear();
 
 
@@ -280,6 +306,49 @@ public class GameScreen extends ScreenAdapter {
             projectiles.get(i).draw(game.batch, 0);
         }
 
+        // Draw PowerUps
+        for(int i = 0; i<powerUps.size; i++){
+            if(powerUps.get(i).collides(game.batch, player)==false){
+                powerUps.get(i).draw(game.batch, 0);
+            }
+            else{
+                if(powerUps.get(i).power == "DamageBoost"){player.addDamage();}
+                else if(powerUps.get(i).power == "MaxHealth"){player.addHealth();}
+                else if(powerUps.get(i).power == "Heal"){player.heal(75);}
+                else if(powerUps.get(i).power == "SpeedBoost"){player.speedUp(30);}
+                else if(powerUps.get(i).power == "Immunity"){immunity = true;}
+                powerUps.removeIndex(i);
+            }
+        }
+        if(immunity == true && immunityTimer ==0){
+            immunityTimer = Instant.now().getEpochSecond();
+        }
+        else if(immunity == true && Instant.now().getEpochSecond()-immunityTimer >25){
+            immunity = false;
+        }
+
+        else{assert true;}
+
+
+        // Draw Obstacles
+        for(int i = 0; i<obstacles.size; i++){
+            if(obstacles.get(i).collides(game.batch, player)==false){
+                obstacles.get(i).draw(game.batch, 0);
+            }
+            else{
+                obstacles.get(i).draw(game.batch, 0);
+                if(obstacles.get(i).power == "HostileWreck" && obstacles.get(i).hostile == true){
+                    player.takeInstantDamage(50);
+                    obstacles.get(i).setHostility(false);
+                }
+                else if(obstacles.get(i).power == "DeadWater" && obstacles.get(i).hostile == true){
+                    player.slowDown(25);
+                    obstacles.get(i).setHostility(false);
+                }
+                
+            }
+        } 
+
         // Draw Player, Player Health and Player Name
         if(!isPaused) {
             player.drawHealthBar(game.batch);
@@ -306,27 +375,10 @@ public class GameScreen extends ScreenAdapter {
           }
           else{assert true;}
         }
-        // Draw PowerUps
-        for(int i = 0; i<powerUps.size; i++){
-            if(powerUps.get(i).collides(game.batch, player)==false){
-                powerUps.get(i).draw(game.batch, 0);
-            }
-            else{
-                if(powerUps.get(i).power == "DamageBoost"){player.addDamage();}
-                else if(powerUps.get(i).power == "MaxHealth"){player.addHealth();}
-                else if(powerUps.get(i).power == "Heal"){player.heal(75);}
-                else if(powerUps.get(i).power == "SpeedBoost"){player.addSpeed();}
-                else if(powerUps.get(i).power == "Immunity"){immunity = true;}
-                powerUps.removeIndex(i);
-            }
-        }
-        if(immunity == true && immunityTimer ==0){
-            immunityTimer = Instant.now().getEpochSecond();
-        }
-        else if(immunity == true && Instant.now().getEpochSecond()-immunityTimer >25){
-            immunity = false;
-        }
-        else{assert true;}
+   
+
+
+
         fog.setX(player.x-(fog.getWidth()/2));
         fog.setY(player.y-(fog.getHeight()/2));
 
@@ -458,7 +510,10 @@ public class GameScreen extends ScreenAdapter {
     public void gameDifficulty(){
         game.setScreen(new DifficultyScreen(game, this));
     }
-
+    
+    public void gameTips(){
+        game.setScreen(new TipsScreen(game, this));
+    }
     /**
      * Used to encapsulate elapsedTime.
      * @return  Time since the current session started.

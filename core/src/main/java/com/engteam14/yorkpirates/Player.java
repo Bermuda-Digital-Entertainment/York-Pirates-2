@@ -164,6 +164,7 @@ public class Player extends GameObject {
         }
     }
 
+
     /**
      * Called after update(), calculates whether the camera should follow the player and passes it to the game screen.
      * @param screen    The main game screen.
@@ -230,11 +231,23 @@ public class Player extends GameObject {
         currentHealth = amount;
     }
 
-    //** Adds to the speed of the player */
-    public void addSpeed(){
-        SPEED += 30f;
+    public void takeInstantDamage(int amount){
+        currentHealth = currentHealth - amount;
     }
-    public void setDamage(int amount){
+
+    //** Adds to the speed of the player */
+    public void speedUp(float amount){
+        SPEED += amount;
+    }
+
+    public void slowDown(float amount){
+        if(SPEED>30){
+            SPEED -= amount;
+        }
+        else{assert true;}
+
+    }
+    public void setDamage(float amount){
         damage = amount;
     }
 
