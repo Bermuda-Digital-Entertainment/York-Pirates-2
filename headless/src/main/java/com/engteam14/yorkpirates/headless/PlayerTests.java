@@ -59,4 +59,69 @@ public class PlayerTests {
     assertFalse("This is not a safe position", testPlayer.safeMove(edges));
   }
 
+  /**Tests the addHealth method works correctly
+  */
+  @Test
+  public void testAddHealth() {
+    Player testPlayer = createPlayer();
+    int oldMaxHealth = testPlayer.maxHealth;
+    float oldHealth = testPlayer.currentHealth;
+    testPlayer.addHealth();
+    assertTrue("Player Health increased", testPlayer.currentHealth==(oldHealth+50f));
+    assertTrue("Player Max Health increased", testPlayer.maxHealth==(oldMaxHealth+50));
+    oldMaxHealth = testPlayer.maxHealth;
+    oldHealth = testPlayer.currentHealth;
+    testPlayer.addHealth();
+    assertFalse("Player Health increased", testPlayer.currentHealth==(oldHealth+50f));
+    assertFalse("Player Max Health increased", testPlayer.maxHealth==(oldMaxHealth+50));
+  }
+
+  /**Tests the heal method works correctly
+  */
+  @Test
+  public void testHeal() {
+    Player testPlayer = createPlayer();
+    testPlayer.currentHealth-=50;
+    testPlayer.heal(100);
+    assertTrue("Player Health increased", testPlayer.currentHealth==testPlayer.maxHealth);
+  }
+
+  /**Tests the addDamage method works correctly
+  */
+  @Test
+  public void testAddDamage() {
+    Player testPlayer = createPlayer();
+    float oldDamage = testPlayer.getPlayerDamage();
+    testPlayer.addDamage();
+    assertTrue("Player Damage", testPlayer.getPlayerDamage()==(oldDamage+50f));
+  }
+
+  /**Tests the setHealth method works correctly
+  */
+  @Test
+  public void testSetHealth() {
+    Player testPlayer = createPlayer();
+    testPlayer.setHealth(100);
+    assertTrue("Player Health changed", testPlayer.currentHealth==100);
+    assertTrue("Player Max Health changed", testPlayer.maxHealth==100);
+  }
+
+  /**Tests the takeInstantDamage method works correctly
+  */
+  @Test
+  public void testTakeInstantDamage() {
+    Player testPlayer = createPlayer();
+    float oldHealth = testPlayer.currentHealth;
+    testPlayer.takeInstantDamage(10);
+    assertTrue("Player Health increased", testPlayer.currentHealth==(oldHealth-10f));
+  }
+
+  /**Tests the setDamage method works correctly
+  */
+  @Test
+  public void testSetDamage() {
+    Player testPlayer = createPlayer();
+    testPlayer.setDamage(100);
+    assertTrue("Player Health increased", testPlayer.getPlayerDamage()==100);
+  }
 }

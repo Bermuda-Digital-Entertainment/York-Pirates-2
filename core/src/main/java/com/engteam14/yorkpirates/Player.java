@@ -207,7 +207,9 @@ public class Player extends GameObject {
     public void addHealth(){
         setMaxHealth(HEALTH+50);
         currentHealth += 50;
+        if (currentHealth>maxHealth) currentHealth = maxHealth;
     }
+
     /** Heals the player */
     public void heal(int amount){
         if(currentHealth+amount < maxHealth){
@@ -225,6 +227,7 @@ public class Player extends GameObject {
     public void addDamage(){
         damage+=50f;
     }
+
     public void setHealth(int amount){
         setMaxHealth(amount);
         currentHealth = amount;
@@ -234,7 +237,7 @@ public class Player extends GameObject {
         currentHealth = currentHealth - amount;
     }
 
-    //** Adds to the speed of the player */
+    /** Adds to the speed of the player */
     public void speedUp(float amount){
         SPEED += amount;
     }
