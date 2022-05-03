@@ -24,6 +24,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+import org.json.simple.JSONObject;
+
 public class GameScreen extends ScreenAdapter {
     // Team name constants
     public static final String playerTeam = "PLAYER";
@@ -452,6 +454,7 @@ public class GameScreen extends ScreenAdapter {
     public void gameSave(){
         game.setScreen(new SaveScreen(game,this));
     }
+
     public void gameDifficulty(){
         game.setScreen(new DifficultyScreen(game, this));
     }
@@ -535,7 +538,34 @@ public class GameScreen extends ScreenAdapter {
     public void setDifficulty(int level){
         difficulty = level;
     }
+
     public int getDifficulty(){
         return difficulty;
+    }
+
+    public JSONObject saveScreen(){
+      JSONObject savedScreen = new JSONObject();
+      savedScreen.put("difficulty", difficulty);
+      savedScreen.put("points", points.Get());
+      savedScreen.put("loot", loot.Get());
+      savedScreen.put("fogDecider",fogDecider);
+      savedScreen.put("fogCounter",fogCounter);
+      savedScreen.put("fogLengthDecider",fogLengthDecider);
+      savedScreen.put("counterStarted", counterStarted);
+      savedScreen.put("startTimeStamp", startTimeStamp);
+      savedScreen.put("elapsedTime", elapsedTime);
+      return savedScreen;
+    }
+
+    public void loadSave(JSONObject savedScreen){
+      difficulty = (int) ((long) savedScreen.get("difficulty"));
+      points.Set(((int) ((long) savedScreen.get("points"))));
+      loot.Set((int) ((long) savedScreen.get("loot")));
+      fogDecider = (int) ((long) savedScreen.get("fogDecider"));
+      fogCounter = (long) savedScreen.get("fogCounter");
+      fogLengthDecider = (int) ((long) savedScreen.get("fogLengthDecider"));
+      counterStarted = (Boolean) savedScreen.get("counterStarted");
+      startTimeStamp = (long) savedScreen.get("startTimeStamp");
+      elapsedTime = ((Double) savedScreen.get("elapsedTime")).floatValue();
     }
 }
