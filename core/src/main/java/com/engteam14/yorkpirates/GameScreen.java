@@ -359,24 +359,20 @@ public class GameScreen extends ScreenAdapter {
             HUDBatch.end();
         }
 
+        // Draw boats
+        for (int i = 0; i < boats.size; i++) {
+            boats.get(i).draw(game.batch, 0);
+            if(boats.get(i).currentHealth>0){
+              game.batch.draw(boatHealthBar, boats.get(i).x-16, boats.get(i).y+10, boats.get(i).currentHealth/100*32, 2);
+            }
+            else{assert true;}
+          }
 
         // Draw Colleges
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).draw(game.batch, 0);
 
         }
-
-
-        // Draw boats
-        for (int i = 0; i < boats.size; i++) {
-          boats.get(i).draw(game.batch, 0);
-          if(boats.get(i).currentHealth>0){
-            game.batch.draw(boatHealthBar, boats.get(i).x-16, boats.get(i).y+10, boats.get(i).currentHealth/100*32, 2);
-          }
-          else{assert true;}
-        }
-   
-
 
 
         fog.setX(player.x-(fog.getWidth()/2));
