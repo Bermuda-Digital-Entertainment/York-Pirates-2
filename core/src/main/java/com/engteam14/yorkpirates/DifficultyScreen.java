@@ -55,8 +55,7 @@ public class DifficultyScreen extends ScreenAdapter {
                 screen.setDifficulty(1);
                 screen.getPlayer().setDamage(200);
                 screen.getPlayer().setHealth(200);
-                screen.setPaused(false);
-                game.setScreen(screen);
+                screen.gameTips();
             }
         });
 
@@ -66,8 +65,7 @@ public class DifficultyScreen extends ScreenAdapter {
                 screen.setDifficulty(2);
                 screen.getPlayer().setDamage(100);
                 screen.getPlayer().setHealth(100);
-                screen.setPaused(false);
-                game.setScreen(screen);
+                screen.gameTips();
             }
         });
 
@@ -77,8 +75,7 @@ public class DifficultyScreen extends ScreenAdapter {
                 screen.setDifficulty(3);
                 screen.getPlayer().setDamage(50);
                 screen.getPlayer().setHealth(50);
-                screen.setPaused(false);
-                game.setScreen(screen);
+                screen.gameTips();
             }
         });
 
