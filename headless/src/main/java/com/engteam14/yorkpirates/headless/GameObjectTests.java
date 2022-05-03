@@ -47,7 +47,7 @@ public class GameObjectTests {
   /**Tests that the takeDamage method works and only subtracts from currentHealth (not maxHealth)
   */
   @Test
-  public void testTakeDamage(){
+  public void testTakeDamage() {
     GameObject testObject = createGameObject();
     testObject.setMaxHealth(25);
     testObject.takeDamage(5f);
@@ -58,7 +58,7 @@ public class GameObjectTests {
   /**Tests move method works correctly
   */
   @Test
-  public void testMove() throws Exception {
+  public void testMove() {
     GameObject testObject = createGameObject();
     assertTrue("Starting X position is correct", testObject.x == 12f);
     assertTrue("Starting Y position is correct", testObject.y == 10f);
@@ -70,7 +70,7 @@ public class GameObjectTests {
   /**Tests that the overlaps method works correctly (between two GameObjects)
   */
   @Test
-  public void testOverlaps() throws Exception {
+  public void testOverlaps() {
     GameObject testObject1 = createGameObject();
     GameObject testObject2 = createGameObject();
     assertTrue("testObject1 overlaps testObject2",testObject1.overlaps(testObject2.getHitBox()));
