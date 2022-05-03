@@ -53,7 +53,7 @@ public class Boat extends GameObject {
 
   public void followPlayer(){
     Float xDir, yDir, distence;
-    if (nearPlayer()){
+    if (nearPlayer(Gdx.graphics.getWidth()/5f,Gdx.graphics.getHeight()/5f)){
       xDir=this.x-player.x;
       yDir=this.y-player.y;
       distence = (float) sqrt(xDir*xDir + yDir*yDir);
@@ -63,15 +63,10 @@ public class Boat extends GameObject {
 
     }
   }
-  //public void followPlayer(){
-    //if (nearPlayer){
-      //move(){
-    //}
-  //}
 
   public void shoot(GameScreen screen){
 
-    if (this.timeLastShot >= this.timeBetweenShots && nearPlayer()){
+    if (this.timeLastShot >= this.timeBetweenShots && nearPlayer(Gdx.graphics.getWidth()/5f,Gdx.graphics.getHeight()/5f)){
       Array<Texture> sprite = new Array<>();
       sprite.add(new Texture("tempProjectile.png"));
       screen.projectiles.add(new Projectile(sprite, 0, this, this.player.x, this.player.y, team));
@@ -117,8 +112,8 @@ public class Boat extends GameObject {
       );
   }
 
-  public Boolean nearPlayer(){
-    return abs(this.x - player.x) < (Gdx.graphics.getWidth()/5f) && abs(this.y - player.y) < (Gdx.graphics.getHeight()/5f);
+  public Boolean nearPlayer(float xDistence, float yDistence){
+    return abs(this.x - player.x) < (xDistence) && abs(this.y - player.y) < (yDistence);
   }
 
   @Override
