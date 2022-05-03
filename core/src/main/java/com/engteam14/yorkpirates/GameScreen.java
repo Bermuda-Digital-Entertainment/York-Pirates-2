@@ -5,7 +5,6 @@ import java.time.Instant;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -49,9 +48,6 @@ public class GameScreen extends ScreenAdapter {
     
     // Obstacles
     public Array<Obstacle> obstacles;
-
-    // Sound
-    public Music music;
 
     // Main classes
     private final YorkPirates game;
@@ -108,12 +104,6 @@ public class GameScreen extends ScreenAdapter {
         HUDCam.setToOrtho(false, game.camera.viewportWidth, game.camera.viewportHeight);
         viewport = new FitViewport( Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), HUDCam);
         gameHUD =  new HUD(this);
-
-        //initialise sound
-        music = Gdx.audio.newMusic(Gdx.files.internal("Pirate1_Theme1.ogg"));
-        music.setLooping(true);
-        music.setVolume(0);
-        music.play();
 
         // Initialise sprites array to be used generating GameObjects
         Array<Texture> sprites = new Array<>();
@@ -274,7 +264,7 @@ public class GameScreen extends ScreenAdapter {
         projectiles = new Array<>();
 
         // Load the fog texture
-        fog = new Sprite(new Texture(Gdx.files.internal("fog(1).png")));
+        fog = new Sprite(new Texture(Gdx.files.internal("fog.png")));
 
         startTimeStamp = Instant.now().getEpochSecond();
     }
@@ -359,7 +349,7 @@ public class GameScreen extends ScreenAdapter {
             }
             else{assert true;}
         }
-        
+
         // Draw Player, Player Health and Player Name
         if(!isPaused) {
             player.drawHealthBar(game.batch);
@@ -385,7 +375,7 @@ public class GameScreen extends ScreenAdapter {
         }
         else{assert true;}
 
-        if(Instant.now().getEpochSecond() - startTimeStamp > 10 && difficulty>1){
+        if(Instant.now().getEpochSecond() - startTimeStamp > 50 && difficulty>1){
             fog.draw(game.batch, 1f);
             if(counterStarted==false){
                 fogCounter = Instant.now().getEpochSecond();
@@ -585,7 +575,7 @@ public class GameScreen extends ScreenAdapter {
     public void dispose(){
         HUDBatch.dispose();
         tiledMap.dispose();
-        music.dispose();
+
     }
 
     public void setDifficulty(int level){
