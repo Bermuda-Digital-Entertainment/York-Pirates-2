@@ -1,6 +1,6 @@
-
 package com.engteam14.yorkpirates;
 
+import com.badlogic.gdx.utils.Array;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
@@ -37,19 +37,61 @@ public class SaveLoad {
     savedGame.put("player", object.returnSave());
   }
 
-  // public void saveObject(GameScreen screen){
-  //   object.genSave();
-  //   savedGame.put(object.getName(), object.returnSave());
-  // }
+  public void saveObject(Boat object){
+    object.genSave();
+    savedGame.put("boat", object.returnSave());
+  }
+
+  public void saveColleges(Array<College> objects){
+    College college;
+    JSONObject savedColleges = new JSONObject();
+    for(int i = 0; i < objects.size; i++) {
+      college = objects.get(i);
+      college.genSave();
+      savedColleges.put(i, college.returnSave());
+    }
+    savedGame.put("colleges", savedColleges);
+  }
+
+  public void saveBoats(Array<Boat> objects){
+    Boat boat;
+    JSONObject savedBoats = new JSONObject();
+    for(int i = 0; i < objects.size; i++) {
+      boat = objects.get(i);
+      boat.genSave();
+      savedBoats.put(i, boat.returnSave());
+    }
+    savedGame.put("boats", savedBoats);
+  }
 
   public void resumeSave(GameScreen screen){
     resumeObject(screen.getPlayer());
+    resumeCollege(screen.colleges, screen);
+    resumeBoat(screen.boats);
   }
 
   public void resumeObject(Player player){
     JSONObject playerObj = (JSONObject) loadedGame.get("player");
 
     player.loadSave(playerObj);
+  }
+
+  public void resumeCollege(Array<College> colleges, GameScreen screen){
+    JSONObject collegesObj = (JSONObject) loadedGame.get("colleges");
+    College college;
+    for(int i = 0; i < colleges.size; i++) {
+      college=colleges.get(i);
+      college.loadSave((JSONObject) collegesObj.get(Integer.toString(i)), screen);
+    }
+  }
+
+  public void resumeBoat(Array<Boat> boats){
+    JSONObject boatsObj = (JSONObject) loadedGame.get("boats");
+    Boat boat;
+    for(int i = 0; i < boats.size; i++) {
+      boat=boats.get(i);
+      boat.loadSave((JSONObject) boatsObj.get(Integer.toString(i)));
+    }
   }
 
   public void loadSave(){
@@ -59,7 +101,7 @@ public class SaveLoad {
 
         loadedGame = (JSONObject) loadedGameObj;
 
-        System.out.println(loadedGame);
+        //System.out.println(loadedGame);
     }catch (FileNotFoundException exc) {
       ;
     }catch (IOException exc) {

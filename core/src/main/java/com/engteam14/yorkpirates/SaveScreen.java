@@ -54,6 +54,8 @@ public class SaveScreen extends ScreenAdapter {
                 String directory = getDir();
                 SaveLoad save = new SaveLoad(directory);
                 save.saveObject(screen.getPlayer());
+                save.saveColleges(screen.colleges);
+                save.saveBoats(screen.boats);
                 save.saveSave();
             }
         });

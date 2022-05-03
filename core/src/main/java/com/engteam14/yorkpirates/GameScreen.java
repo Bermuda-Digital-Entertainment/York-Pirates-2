@@ -55,7 +55,7 @@ public class GameScreen extends ScreenAdapter {
     private String playerName;
     private Vector3 followPos;
     private boolean followPlayer = false;
-    
+
     // Boats
     private Texture boatHealthBar;
 
@@ -226,10 +226,6 @@ public class GameScreen extends ScreenAdapter {
         fog = new Sprite(new Texture(Gdx.files.internal("fog(1).png")));
         
         startTimeStamp = Instant.now().getEpochSecond();
-
-        
-        
-
     }
 
 
@@ -273,7 +269,7 @@ public class GameScreen extends ScreenAdapter {
         // Draw Colleges
         for(int i = 0; i < colleges.size; i++) {
             colleges.get(i).draw(game.batch, 0);
-            
+
         }
 
 
@@ -329,11 +325,11 @@ public class GameScreen extends ScreenAdapter {
                     fogDecider = 0;
                     fogLengthDecider = 0;
                 }
-                else{assert true;}                            
+                else{assert true;}
             }
         }
         else{assert true;}
-        
+
         game.batch.end();
 
 
@@ -429,7 +425,7 @@ public class GameScreen extends ScreenAdapter {
     public void gameShop(){
         game.setScreen(new ShopScreen(game, this));
     }
-    
+
     public void gameSave(){
         game.setScreen(new SaveScreen(game,this));
     }

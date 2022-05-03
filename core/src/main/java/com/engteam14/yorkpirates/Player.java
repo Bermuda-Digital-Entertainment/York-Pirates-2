@@ -58,13 +58,20 @@ public class Player extends GameObject {
      */
     public void update(GameScreen screen, OrthographicCamera camera, int horizontal, int vertical){
         Vector2 oldPos = new Vector2(x,y); // Stored for next-frame calculations
+        Boolean overlap = false;
 
         // Calculate collision && movement
         if (horizontal != 0 || vertical != 0){
             move(SPEED *horizontal, SPEED *vertical);
+            for (int i=0; i < screen.boats.size; i++) {
+              if (overlaps(screen.boats.get(i).hitBox)) overlap = true;
+            }
             previousDirectionX = horizontal;
             previousDirectionY = vertical;
-            if (safeMove(screen.getMain().edges)) {
+            if (overlap==true){ //Collision with enemy boat
+              x = oldPos.x;
+              y = oldPos.y;
+            } else if (safeMove(screen.getMain().edges)) {
                 if (TimeUtils.timeSinceMillis(lastMovementScore) > POINT_FREQUENCY) {
                     lastMovementScore = TimeUtils.millis();
                     screen.points.Add(1);
@@ -72,10 +79,10 @@ public class Player extends GameObject {
             } else {    // Collision
                 Vector2 newPos = new Vector2(x, y);
                 x = oldPos.x;
-                if (!safeMove(screen.getMain().edges)) {
+                if (!safeMove(screen.getMain().edges) && overlap==false) {
                     x = newPos.x;
                     y = oldPos.y;
-                    if (!safeMove(screen.getMain().edges)) {
+                    if (!safeMove(screen.getMain().edges) && overlap==false) {
                         x = oldPos.x;
                     }
                 }

@@ -202,25 +202,8 @@ public class College extends GameObject {
         // Draw college
         batch.draw(anim.getKeyFrame(elapsedTime, true), x - width/2, y - height/2, width, height);
 
-        // Draw boats before college so under
-        //batch.setShader(null);
-        for(int i = 0; i < boats.size; i++){
-            GameObject boat = boats.get(i);
-            batch.draw(boatTexture.get(0), boat.x+boat.height, boat.y, 0,0, boat.width, boat.height, 1f, 1f, boatRotations.get(i), 0, 0, boatTexture.get(0).getWidth(), boatTexture.get(0).getHeight(), false, false);
-        }
-
         collegeBar.draw(batch, 0);
         direction.draw(batch,0);
-    }
-
-    /**
-     * Add a boat to this college.
-     * @param x The x position of the new boat relative to the college.
-     * @param y The y position of the new boat relative to the college.
-     */
-    public void addBoat(float x, float y, float rotation){
-        boats.add(new GameObject(boatTexture, 0, this.x+x, this.y+y, 25, 12, team));
-        boatRotations.add(rotation);
     }
 
     /** Returns the name of the college*/
@@ -234,5 +217,33 @@ public class College extends GameObject {
       super.genSave();
       objectJSON.put("splashTime",splashTime);
       objectJSON.put("lastShotFired",lastShotFired);
+    }
+
+    /** Loads the JSON from a college save*/
+    //@Override
+    public void loadSave(JSONObject objectJSON, GameScreen screen){
+      //System.out.println(objectJSON);
+      this.loadSave(objectJSON);
+      splashTime = ((Double) objectJSON.get("splashTime")).floatValue();
+      lastShotFired = (long) objectJSON.get("lastShotFired");
+
+      if (this.team=="PLAYER"){
+        Array<Texture> healthBarSprite = new Array<>();
+        Array<Texture> indicatorSprite = new Array<>();
+        healthBarSprite.add(new Texture("allyHealthBar.png"));
+        indicatorSprite.add(new Texture("allyArrow.png"));
+        boatTexture.clear();
+        boatTexture.add(screen.getPlayer().anim.getKeyFrame(0f));
+
+        Array<Texture> sprites = new Array<>();
+        sprites.add(collegeImages.get(1));
+        changeImage(sprites,0);
+
+        collegeBar.changeImage(healthBarSprite,0);
+        currentHealth = maxHealth;
+        collegeBar.resize(currentHealth);
+        College.capturedCount++;
+        direction.changeImage(indicatorSprite,0);
+      }
     }
 }
