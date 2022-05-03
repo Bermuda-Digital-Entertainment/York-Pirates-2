@@ -13,8 +13,8 @@ public class Player extends GameObject {
 
     // Player constants
     private static final int POINT_FREQUENCY = 1000; // How often the player gains points by moving.
-    private static final float CAMERA_SLACK = 0.1f; // What percentage of the screen the player can move in before the camera follows.
-    private static final float SPEED =70f; // Player movement speed.
+    private static final float CAMERA_SLACK = 0.01f; // What percentage of the screen the player can move in before the camera follows.
+    private static float SPEED =70f; // Player movement speed.
     private static int HEALTH = 200;
     private static float damage = 50f;
 
@@ -146,16 +146,21 @@ public class Player extends GameObject {
      */
     @Override
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
-        timeLastHit = TimeUtils.millis();
-        currentHealth -= damage;
-        doBloodSplash = true;
+        if(screen.immunity == true){
+            assert true;
+        }
+        else{
+            timeLastHit = TimeUtils.millis();
+            currentHealth -= damage;
+            doBloodSplash = true;
 
-        // Health-bar reduction
-        if(currentHealth > 0){
-            playerHealth.resize(currentHealth);
-        }else{
-            playerHealth = null;
-            screen.gameEnd(false);
+            // Health-bar reduction
+            if(currentHealth > 0){
+                playerHealth.resize(currentHealth);
+            }else{
+                playerHealth = null;
+                screen.gameEnd(false);
+            }
         }
     }
 
@@ -203,6 +208,13 @@ public class Player extends GameObject {
         setMaxHealth(HEALTH+50);
         currentHealth += 50;
     }
+    /** Heals the player */
+    public void heal(int amount){
+        if(currentHealth+amount < maxHealth){
+        currentHealth += amount;
+        }
+        else{currentHealth = maxHealth;}
+    }
 
     /** Returns the damage the a player generated projectile does*/
     public float getPlayerDamage(){
@@ -216,6 +228,11 @@ public class Player extends GameObject {
     public void setHealth(int amount){
         setMaxHealth(amount);
         currentHealth = amount;
+    }
+
+    //** Adds to the speed of the player */
+    public void addSpeed(){
+        SPEED += 40f;
     }
     public void setDamage(int amount){
         damage = amount;
