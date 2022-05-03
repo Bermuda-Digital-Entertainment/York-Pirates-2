@@ -187,7 +187,7 @@ public class GameScreen extends ScreenAdapter {
         // Add alcuin
         collegeSprites.add( new Texture("alcuin.png"),
                             new Texture("alcuin_2.png"));
-        newCollege = new College(collegeSprites, 1492, 665, 0.5f,"Alcuin", enemyTeam, player, "alcuin_boat.png");
+        newCollege = new College(collegeSprites, 1492, 665, 0.5f,"Alcuin", enemyTeam, player);
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -203,7 +203,7 @@ public class GameScreen extends ScreenAdapter {
         // Add derwent
         collegeSprites.add( new Texture("derwent.png"),
                             new Texture("derwent_2.png"));
-        newCollege = (new College(collegeSprites, 1815, 2105, 0.8f,"Derwent", enemyTeam, player, "derwent_boat.png"));
+        newCollege = (new College(collegeSprites, 1815, 2105, 0.8f,"Derwent", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -219,7 +219,7 @@ public class GameScreen extends ScreenAdapter {
         // Add langwith
         collegeSprites.add( new Texture("langwith.png"),
                             new Texture("langwith_2.png"));
-        newCollege = (new College(collegeSprites, 1300, 1530, 1.0f,"Langwith", enemyTeam, player, "langwith_boat.png"));
+        newCollege = (new College(collegeSprites, 1300, 1530, 1.0f,"Langwith", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -235,7 +235,7 @@ public class GameScreen extends ScreenAdapter {
         //Add Constantine
         collegeSprites.add( new Texture("constantine.png"),
                             new Texture("constantine_2.png"));
-        newCollege = (new College(collegeSprites, 500, 1580, 0.7f,"Constantine", enemyTeam, player, "langwith_boat.png"));
+        newCollege = (new College(collegeSprites, 500, 1580, 0.7f,"Constantine", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -251,7 +251,7 @@ public class GameScreen extends ScreenAdapter {
         //Add James
         collegeSprites.add( new Texture("james.png"),
                             new Texture("james_2.png"));
-        newCollege = (new College(collegeSprites, 700, 2180, 0.7f,"James", enemyTeam, player, "langwith_boat.png"));
+        newCollege = (new College(collegeSprites, 700, 2180, 0.7f,"James", enemyTeam, player));
         colleges.add(newCollege);
         collegeSprites.clear();
 
@@ -267,15 +267,15 @@ public class GameScreen extends ScreenAdapter {
 
         // Add goodricke
         collegeSprites.add( new Texture("goodricke.png"));
-        colleges.add(new College(collegeSprites, 700, 525, 0.7f,"Home",playerTeam,player, "ship1.png"));
+        colleges.add(new College(collegeSprites, 700, 525, 0.7f,"Home",playerTeam,player));
 
-        
+
         // Initialise projectiles array to be used storing live projectiles
         projectiles = new Array<>();
 
         // Load the fog texture
         fog = new Sprite(new Texture(Gdx.files.internal("fog(1).png")));
-        
+
         startTimeStamp = Instant.now().getEpochSecond();
     }
 

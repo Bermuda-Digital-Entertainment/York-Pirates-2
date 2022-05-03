@@ -23,9 +23,6 @@ public class College extends GameObject {
     private long lastShotFired;
     private final String collegeName;
     private final Array<Texture> collegeImages;
-    private Array<Texture> boatTexture;
-    private Array<GameObject> boats;
-    private Array<Float> boatRotations;
     private int pointsGained = 50;
     private int lootGained = 150;
     private boolean doBloodSplash = false;
@@ -37,13 +34,9 @@ public class College extends GameObject {
      * @param name      The name of the college.
      * @param team      The team the college is on.
      */
-    public College(Array<Texture> sprites, float x, float y, float scale, String name, String team, Player player, String boatTexture){
+    public College(Array<Texture> sprites, float x, float y, float scale, String name, String team, Player player){
         super(sprites, 0, x, y, sprites.get(0).getWidth()*scale, sprites.get(0).getHeight()*scale, team);
 
-        this.boatTexture = new Array<>();
-        this.boats = new Array<>();
-        this.boatRotations = new Array<>();
-        this.boatTexture.add(new Texture(Gdx.files.internal(boatTexture)));
         collegeImages = new Array<>();
         for(int i = 0; i < sprites.size; i++) {
             collegeImages.add(sprites.get(i));
@@ -126,7 +119,6 @@ public class College extends GameObject {
      * @param damage            The damage dealt by the projectile.
      * @param projectileTeam    The team of the projectile.
      */
-    @Override
     public void takeDamage(GameScreen screen, float damage, String projectileTeam){
         currentHealth -= damage;
         doBloodSplash = true;
@@ -155,8 +147,6 @@ public class College extends GameObject {
                 Array<Texture> indicatorSprite = new Array<>();
                 healthBarSprite.add(new Texture("allyHealthBar.png"));
                 indicatorSprite.add(new Texture("allyArrow.png"));
-                boatTexture.clear();
-                boatTexture.add(screen.getPlayer().anim.getKeyFrame(0f));
 
                 Array<Texture> sprites = new Array<>();
                 sprites.add(collegeImages.get(1));
@@ -232,8 +222,6 @@ public class College extends GameObject {
         Array<Texture> indicatorSprite = new Array<>();
         healthBarSprite.add(new Texture("allyHealthBar.png"));
         indicatorSprite.add(new Texture("allyArrow.png"));
-        boatTexture.clear();
-        boatTexture.add(screen.getPlayer().anim.getKeyFrame(0f));
 
         Array<Texture> sprites = new Array<>();
         sprites.add(collegeImages.get(1));

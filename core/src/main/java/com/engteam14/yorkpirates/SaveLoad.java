@@ -101,7 +101,6 @@ public class SaveLoad {
 
   public void resumeScreen(GameScreen screen){
     JSONObject screenObj = (JSONObject) loadedGame.get("screen");
-    System.out.println(screenObj);
     screen.loadSave(screenObj);
   }
 
