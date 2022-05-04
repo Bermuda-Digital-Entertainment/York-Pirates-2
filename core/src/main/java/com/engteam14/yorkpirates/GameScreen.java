@@ -371,11 +371,11 @@ public class GameScreen extends ScreenAdapter {
         fog.setY(player.y-(fog.getHeight()/2));
 
         if(fogDecider == 0){
-            fogDecider = MathUtils.random(30,60);
+            fogDecider = MathUtils.random(50,90);
         }
         else{assert true;}
 
-        if(Instant.now().getEpochSecond() - startTimeStamp > 50 && difficulty>1){
+        if(Instant.now().getEpochSecond() - startTimeStamp > fogDecider && difficulty>1){
             fog.draw(game.batch, 1f);
             if(counterStarted==false){
                 fogCounter = Instant.now().getEpochSecond();
@@ -414,7 +414,8 @@ public class GameScreen extends ScreenAdapter {
      */
     @Override
     public void resize(int width,int height){
-      HUDCam.setToOrtho(false, width, height);
+      gameHUD.stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), true);
+      HUDCam.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
     }
 
     /**
@@ -487,21 +488,34 @@ public class GameScreen extends ScreenAdapter {
         game.setScreen(new TitleScreen(game));
     }
 
+    /**
+     * Called to switch from the current screen to the shop screen
+     */
     public void gameShop(){
         game.setScreen(new ShopScreen(game, this));
     }
 
+    /**
+     * Called to switch from the current screen to the save screen
+     */
     public void gameSave(){
         game.setScreen(new SaveScreen(game,this));
     }
 
+    /**
+     * Called to switch from the current screen to the Difficulty Selection screen
+     */
     public void gameDifficulty(){
         game.setScreen(new DifficultyScreen(game, this));
     }
-    
+
+    /**
+     * Called to switch from the current screen to the tips screen
+     */
     public void gameTips(){
         game.setScreen(new TipsScreen(game, this));
     }
+
     /**
      * Used to encapsulate elapsedTime.
      * @return  Time since the current session started.
@@ -577,15 +591,25 @@ public class GameScreen extends ScreenAdapter {
         tiledMap.dispose();
 
     }
-
+    /**
+     * Sets the difficulty level chosen by user
+     * @param level 1 easy, 2 medium, 3 hard
+     */
     public void setDifficulty(int level){
         difficulty = level;
     }
-
+    /**
+     * Checks the difficulty of current game
+     * @return difficulty 
+     */
     public int getDifficulty(){
         return difficulty;
     }
 
+    /**
+     * Saves variables to the save file JSON
+     * @return JSON with the screen variables
+     */
     public JSONObject saveScreen(){
       JSONObject savedScreen = new JSONObject();
       savedScreen.put("difficulty", difficulty);
@@ -600,6 +624,10 @@ public class GameScreen extends ScreenAdapter {
       return savedScreen;
     }
 
+    /**
+     * Loads the variables from JSON file
+     * @param savedScreen  the file from which to load data
+     */
     public void loadSave(JSONObject savedScreen){
       difficulty = (int) ((long) savedScreen.get("difficulty"));
       points.Set(((int) ((long) savedScreen.get("points"))));

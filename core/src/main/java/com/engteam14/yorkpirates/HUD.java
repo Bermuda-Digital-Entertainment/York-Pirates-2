@@ -1,6 +1,7 @@
 package com.engteam14.yorkpirates;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,13 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Scaling;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class HUD {
 
     
     // Stage
     public Stage stage;
-
+    public OrthographicCamera camera;
+    public FitViewport hudViewport;
     // Tutorial
     private final Table tutorial;
     private final Cell<Image> tutorialImg;
@@ -57,7 +60,10 @@ public class HUD {
         skin.addRegions(atlas);
 
         // Generate stage and table
-        stage = new Stage(screen.getViewport());
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        hudViewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), camera);
+        stage = new Stage(hudViewport);
         Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
@@ -179,7 +185,9 @@ public class HUD {
 
         score.setText(screen.points.GetString());
         loot.setText(screen.loot.GetString());
+
         // difficulty dependent update
+        // Sets tasks and task rewards depending on the difficulty level of current game
         if(screen.getDifficulty()==0){
             assert true;
         }
@@ -257,9 +265,19 @@ public class HUD {
         pointsTask.setText("Get "+POINT_GOAL+" points:  "+Math.min(screen.points.Get(), POINT_GOAL)+"/"+POINT_GOAL+"  ");
     }
 
+    /**
+     * Updates the player name on the screen
+     * @param screen    the current game screen
+     */
     public void updateName(GameScreen screen) { tasksTitle.setText(screen.getPlayerName() +"'s Tasks:"); }
 
+    /**
+     * Makes the tutorial table disappear
+     */
     public void endTutorial() { tutorialComplete = true; }
 
+    /**
+     * Allows the game to be ended/won
+     */
     public void setGameEndable() {canEndGame = true; }
 }

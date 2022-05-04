@@ -9,6 +9,10 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.TimeUtils;
 import org.json.simple.JSONObject;
 
+
+/**
+ * Creates the player object
+ */
 public class Player extends GameObject {
 
     // Player constants
@@ -227,12 +231,18 @@ public class Player extends GameObject {
     public void addDamage(){
         damage+=50f;
     }
-
+    /** Sets the health of the player to the value
+     * @param amount    The new health value
+     */
     public void setHealth(int amount){
         setMaxHealth(amount);
         currentHealth = amount;
     }
 
+    /**
+     * Deals damage to the player by non-projectile i.e. Obstacle
+     * @param amount    amount of damage to be dealt
+     */
     public void takeInstantDamage(int amount){
         currentHealth = currentHealth - amount;
     }
@@ -242,6 +252,7 @@ public class Player extends GameObject {
         SPEED += amount;
     }
 
+    /** Slows the player down */
     public void slowDown(float amount){
         if(SPEED>30){
             SPEED -= amount;
@@ -249,10 +260,15 @@ public class Player extends GameObject {
         else{assert true;}
 
     }
+
+    /** Sets the palyer's projectile damage */
     public void setDamage(float amount){
         damage = amount;
     }
 
+    /**
+     * creates the object JSON file with player variables
+     */
     @Override
     public void genSave(){
       super.genSave();
@@ -266,6 +282,7 @@ public class Player extends GameObject {
       objectJSON.put("timeLastHit",timeLastHit);
     }
 
+    /**Loads player variables from the JSON file */
     @Override
     public void loadSave(JSONObject objectJSON){
       super.loadSave(objectJSON);

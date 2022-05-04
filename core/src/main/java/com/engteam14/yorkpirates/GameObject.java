@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-//import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -26,7 +25,6 @@ public class GameObject {
     Rectangle hitBox;
     Animation<Texture> anim;
 
-    //ShaderProgram shader = new ShaderProgram(Gdx.files.internal("red.vsh"), Gdx.files.internal("red.fsh"));
 
     /**
      * Generates a generic object within the game with animated frame(s) and a hit-box.
@@ -105,6 +103,10 @@ public class GameObject {
         hitBox.y = y - height/2;
     }
 
+    /**
+     * Gives the Height and Width of the object's sprite
+     * @return The hitbox rectangle of the object
+     */
     public Rectangle getHitBox(){
       return hitBox;
     }
@@ -153,7 +155,10 @@ public class GameObject {
     public String returnSaveString(){
       return objectJSON.toString();
     }
-
+    /**
+     * Load the object values from JSON
+     * @param objectJSON  file from which values are read
+     */
     public void loadSave(JSONObject objectJSON){
       this.x = ((Double) objectJSON.get("x")).floatValue();
       this.y = ((Double) objectJSON.get("y")).floatValue();

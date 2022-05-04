@@ -22,6 +22,12 @@ public class SaveScreen extends ScreenAdapter {
     private final Stage saveStage;
     private TextField textBox;
 
+
+    /**
+     * Initializes the Save Menu Screen 
+     * @param game      Game the screen is for
+     * @param screen    Screen to get data from
+     */
     public SaveScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
@@ -47,12 +53,14 @@ public class SaveScreen extends ScreenAdapter {
         table.setBackground(skin.getDrawable("Selection"));
         if(YorkPirates.DEBUG_ON) table.setDebug(true);
 
+        // Generate Buttons
         TextButton saveButton = new TextButton("Save Game", skin);
         saveButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("SAVE");
                 String directory = getDir();
                 SaveLoad save = new SaveLoad(directory);
+                //Save all values
                 save.saveObject(screen.getPlayer());
                 save.saveColleges(screen.colleges);
                 save.saveBoats(screen.boats);
@@ -61,15 +69,19 @@ public class SaveScreen extends ScreenAdapter {
             }
         });
 
+        //Load button
         TextButton loadButton = new TextButton("Load Game", skin);
         loadButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
               String directory = getDir();
               SaveLoad save = new SaveLoad(directory);
+              // Load commands
               save.loadSave();
               save.resumeSave(screen);
             }
         });
+
+        //Directory text box
         textBox = new TextField("Directory", skin, "edges");
         textBox.setAlignment(Align.center);
         textBox.setOnlyFontChars(true);
@@ -96,7 +108,7 @@ public class SaveScreen extends ScreenAdapter {
     }
 
         /**
-     * Is called once every frame. Runs update() and then renders the title screen.
+     * Is called once every frame. Runs update() and then renders the screen.
      * @param delta The time passed since the previously rendered frame.
      */
     @Override
@@ -116,6 +128,11 @@ public class SaveScreen extends ScreenAdapter {
             gameContinue();
         }
     }
+
+    /**
+     * Gets the directory specified by user to save/load the game to/from
+     * @return  Directory path.
+     */
     private String getDir(){
         String Dir;
         if ( textBox.getText().equals("Directory") || textBox.getText().equals("")) {
@@ -127,7 +144,7 @@ public class SaveScreen extends ScreenAdapter {
         return Dir;
     }
     /**
-     * Generates a HUD object within the game that controls elements of the UI.
+     * Unpauses the game
      */
     private void gameContinue() {
         screen.setPaused(false);

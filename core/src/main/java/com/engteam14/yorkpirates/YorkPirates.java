@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
+
 public class YorkPirates extends Game {
 
 	// Global values
@@ -100,16 +101,7 @@ public class YorkPirates extends Game {
 		font.dispose();
 	}
 
-	/**
-	 * Is called once every time the window is resized. Sets the camera to the new resolution.
-	 * @param width The new width of the screen in pixels
-	 * @param delta The new height of the screen in pixels
-	 */
-	//@Override
-	//public void resize(int width,int height){
-//		camera.setToOrtho(false, width, height);
-//	}
-
+	/** Updates the zoom on the camera */
 	public void updateZoom(int x,int y){
 		xZoom = x;
 		yZoom = y;

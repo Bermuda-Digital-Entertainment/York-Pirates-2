@@ -23,11 +23,14 @@ public class DifficultyScreen extends ScreenAdapter {
     private final Cell<Image> titleCell;
     private float elapsedTime = 0f;
 
+    /**
+     * Generates the Choose Difficulty Screen
+     * @param game      The game instance the screen is called to
+     * @param screen    The screen this function is called by and will inherit variables from
+     */
     public DifficultyScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
-
-
 
         //Generate Title 
         TextureRegion titleT = game.logo.getKeyFrame(0f);
@@ -49,29 +52,33 @@ public class DifficultyScreen extends ScreenAdapter {
         if(YorkPirates.DEBUG_ON) table.setDebug(true);
         Label difficultyMessage = new Label("Choose difficulty", skin);
 
+        //Generate the different difficulty buttons
         TextButton easyButton = new TextButton("Easy", skin);
         easyButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                // Set difficulty-dependent variables
                 screen.setDifficulty(1);
                 screen.getPlayer().setDamage(200);
                 screen.getPlayer().setHealth(200);
                 screen.gameTips();
             }
         });
-
+        //Next button 
         TextButton mediumButton = new TextButton("Medium", skin);
         mediumButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                // Set difficulty-dependent variables
                 screen.setDifficulty(2);
                 screen.getPlayer().setDamage(100);
                 screen.getPlayer().setHealth(100);
                 screen.gameTips();
             }
         });
-
+        //Next button
         TextButton hardButton = new TextButton("Hard", skin);
         hardButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
+                // Set difficulty-dependent variables
                 screen.setDifficulty(3);
                 screen.getPlayer().setDamage(50);
                 screen.getPlayer().setHealth(50);

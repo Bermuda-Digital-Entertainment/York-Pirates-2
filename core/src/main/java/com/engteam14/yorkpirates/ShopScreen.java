@@ -25,9 +25,12 @@ public class ShopScreen extends ScreenAdapter {
     // Player counters
     private final Label score;
     private final Label loot;
-    private final Label cost;
-    private final Label cost1;
 
+    /**
+     * Initializes the Shop Screen
+     * @param game      What game screen is for
+     * @param screen    Screen to get data from
+     */
     public ShopScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
@@ -55,12 +58,6 @@ public class ShopScreen extends ScreenAdapter {
         score = new Label(screen.points.GetString(), skin);
         loot.setFontScale(1.2f);
         score.setFontScale(1.2f);
-        cost = new Label("-50                         ", skin);
-        cost1 = new Label("-50     ", skin);
-        Image coin1 = new Image(new Texture(Gdx.files.internal("loot.png")));
-        Image coin2 = new Image(new Texture(Gdx.files.internal("loot.png")));
-        coin1.setScaling(Scaling.fit);
-        coin2.setScaling(Scaling.fit);
 
         // Create player tracker
         Table tracker = new Table();
@@ -69,8 +66,6 @@ public class ShopScreen extends ScreenAdapter {
 
         // Add score to player tracker
         Table scores = new Table();
-        //scores.add(star).padRight(20);
-        //scores.add(score).padRight(20);
         scores.add(coin).padRight(20);
         scores.add(loot).padRight(20);
         if(YorkPirates.DEBUG_ON) scores.setDebug(true);
@@ -85,6 +80,7 @@ public class ShopScreen extends ScreenAdapter {
         table.setBackground(skin.getDrawable("Selection"));
         if(YorkPirates.DEBUG_ON) table.setDebug(true);
 
+        // Generate Buttons
         TextButton damageButton = new TextButton("+50 Damage (£50)", skin);
         damageButton.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -140,7 +136,7 @@ public class ShopScreen extends ScreenAdapter {
     }
 
         /**
-     * Is called once every frame. Runs update() and then renders the title screen.
+     * Is called once every frame. Runs update() and then renders the screen.
      * @param delta The time passed since the previously rendered frame.
      */
     @Override
@@ -167,13 +163,16 @@ public class ShopScreen extends ScreenAdapter {
     }
 
     /**
-     * Generates a HUD object within the game that controls elements of the UI.
+     * Unpauses the game
      */
     private void gameContinue() {
         screen.setPaused(false);
         game.setScreen(screen);
     }
 
+    /**
+     * Upgrades the players health
+     */
     public void healthUpgrade(){
         if(screen.loot.Get() >= 50){
             screen.loot.Subtract(50);
@@ -183,6 +182,8 @@ public class ShopScreen extends ScreenAdapter {
             assert true;
         }
     }
+
+    /** Upgrades the player's damage */
     public void damageUpgrade(){
         if(screen.loot.Get()>= 50){
             screen.loot.Subtract(50);
@@ -192,7 +193,7 @@ public class ShopScreen extends ScreenAdapter {
             assert true;
         }
     }
-
+    /** Boosts player's speed */
     public void speedUpgrade(){
         if(screen.loot.Get()>= 75){
             screen.loot.Subtract(75);

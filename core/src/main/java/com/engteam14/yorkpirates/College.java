@@ -29,10 +29,13 @@ public class College extends GameObject {
 
     /**
      * Generates a college object within the game with animated frame(s) and a hit-box.
+     * @param sprites   The Array of Textures to be used for rendering the college
      * @param x         The x coordinate within the map to initialise the object at.
      * @param y         The y coordinate within the map to initialise the object at.
+     * @param scale     Float to be used to scale the college Texture on screen
      * @param name      The name of the college.
      * @param team      The team the college is on.
+     * @param player    The Player the college will shoot at/interact with
      */
     public College(Array<Texture> sprites, float x, float y, float scale, String name, String team, Player player){
         super(sprites, 0, x, y, sprites.get(0).getWidth()*scale, sprites.get(0).getHeight()*scale, team);
@@ -67,7 +70,8 @@ public class College extends GameObject {
 
     /**
      * Called once per frame. Used to perform calculations such as collision.
-     * @param screen    The main game screen.
+     * @param screen        The main game screen.
+     * @param enterPressed  Whether the key 'Enter/Return' has been pressed to end the game
      */
     public void update(GameScreen screen, boolean enterPressed){
         direction.move();
@@ -182,13 +186,7 @@ public class College extends GameObject {
      */
     @Override
     public void draw(SpriteBatch batch, float elapsedTime){
-        // if(doBloodSplash){
-        //   //batch.setShader(shader);// Set red shader to the batch
-        // }
-        // else{
         batch.setShader(null);
-        // }
-
         // Draw college
         batch.draw(anim.getKeyFrame(elapsedTime, true), x - width/2, y - height/2, width, height);
 
@@ -212,7 +210,6 @@ public class College extends GameObject {
     /** Loads the JSON from a college save*/
     //@Override
     public void loadSave(JSONObject objectJSON, GameScreen screen){
-      //System.out.println(objectJSON);
       this.loadSave(objectJSON);
       splashTime = ((Double) objectJSON.get("splashTime")).floatValue();
       lastShotFired = (long) objectJSON.get("lastShotFired");

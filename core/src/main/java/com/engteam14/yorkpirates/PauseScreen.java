@@ -13,7 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.ScreenUtils;
 
-
+/**
+ * Builds and initializes the Pause Screen (Menu)
+ */
 public class PauseScreen extends ScreenAdapter {
 
     private final YorkPirates game;
@@ -45,6 +47,7 @@ public class PauseScreen extends ScreenAdapter {
         title.setScaling(Scaling.fit);
 
         // Generate buttons
+        // Resume Button
         TextButton resume = new TextButton("Resume", skin);
         resume.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -52,6 +55,7 @@ public class PauseScreen extends ScreenAdapter {
             }
         });
 
+        // Restart Button
         TextButton restart = new TextButton("End Game", skin);
         restart.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -60,6 +64,7 @@ public class PauseScreen extends ScreenAdapter {
             }
         });
 
+        //Save/Load button
         TextButton loadSave = new TextButton("Save/Load", skin);
         loadSave.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {
@@ -68,6 +73,7 @@ public class PauseScreen extends ScreenAdapter {
             }
         });
 
+        //Quit button
         TextButton quit = new TextButton("Quit", skin);
         quit.addListener(new ClickListener() {
             public void clicked(InputEvent event, float x, float y) {

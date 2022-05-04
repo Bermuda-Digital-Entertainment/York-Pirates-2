@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import static java.lang.Math.*;
 
+/**
+ * Indicator class used to draw pointers to colleges
+ */
 public class Indicator extends GameObject{
 
     private final Player player;
@@ -14,6 +17,12 @@ public class Indicator extends GameObject{
     private Vector2 gradient;
     private boolean visible;
 
+    /**
+     * Initializes the indicator
+     * @param college   which college it will point to
+     * @param player    the player indicators will be drawn next to
+     * @param frames    array of sprites for the indicator
+     */
     public Indicator(College college, Player player, Array<Texture> frames) {
         super(frames, 0, player.x, player.y, frames.get(0).getWidth()/50f, frames.get(0).getHeight()/50f, college.team);
 

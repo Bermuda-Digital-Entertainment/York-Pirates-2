@@ -22,7 +22,11 @@ public class TipsScreen extends ScreenAdapter {
     private final Stage tipsStage;
 
 
-
+    /**
+     * Initializes the tips screen
+     * @param game      game the screen is on
+     * @param screen    screen to get data from
+     */
     public TipsScreen(YorkPirates game, GameScreen screen){
         this.game = game;
         this.screen = screen;
@@ -69,7 +73,7 @@ public class TipsScreen extends ScreenAdapter {
     }
 
         /**
-     * Is called once every frame. Runs update() and then renders the title screen.
+     * Is called once every frame. Runs update() and then renders the screen.
      * @param delta The time passed since the previously rendered frame.
      */
     @Override
@@ -91,7 +95,7 @@ public class TipsScreen extends ScreenAdapter {
     }
 
     /**
-     * Generates a HUD object within the game that controls elements of the UI.
+     * Unpauses the game
      */
     private void gameContinue() {
         screen.setPaused(false);

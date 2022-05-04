@@ -13,6 +13,7 @@ import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
 import java.util.Objects;
 
+
 public class Boat extends GameObject {
 
   protected Player player;
@@ -25,6 +26,15 @@ public class Boat extends GameObject {
   protected Float lastXMove;
   protected Float lastYMove;
 
+  /**
+   * Generates a college object within the game with animated frame(s) and a hit-box.
+   * @param frames    Textures to use for boat rendering
+   * @param x         The x coordinate within the map to initialise the object at.
+   * @param y         The y coordinate within the map to initialise the object at.
+   * @param scale     Scale for the width and height of the boat sprite
+   * @param team      What team is the Boat on (Enemy/Player)
+   * @param player    Instance of Player class the Boat interacts with
+   */
   public Boat(Array<Texture> frames, float x, float y, float scale, String team, Player player){
     super(frames, 0, x, y, frames.get(0).getWidth()*scale, frames.get(0).getHeight()*scale, team);
     this.player=player;
@@ -41,7 +51,11 @@ public class Boat extends GameObject {
     }
   }
 
-
+  /**
+   * Updates the object each frame
+   * @param screen        The screen the boat is rendered/drawn on
+   * @param otherShips    Array of other boats on the screen for collision detection
+   */
   public void update(GameScreen screen, Array<Boat> otherShips){
     if (currentHealth>0){
       shoot(screen);
@@ -51,6 +65,9 @@ public class Boat extends GameObject {
     updateHitboxPos();
   }
 
+  /**
+   * Makes the Boat follow the Player when in range
+   */
   public void followPlayer(){
     Float xDir, yDir, distence;
     if (nearPlayer(Gdx.graphics.getWidth()/5f,Gdx.graphics.getHeight()/5f)){
@@ -64,11 +81,15 @@ public class Boat extends GameObject {
     }
   }
 
+  /**
+   * Makes the Boat shoot projectiles on screen
+   * @param screen    The screen the Boat is rendered/drawn on.
+   */
   public void shoot(GameScreen screen){
 
     if (this.timeLastShot >= this.timeBetweenShots && nearPlayer(Gdx.graphics.getWidth()/5f,Gdx.graphics.getHeight()/5f)){
       Array<Texture> sprite = new Array<>();
-      sprite.add(new Texture("tempProjectile.png"));
+      sprite.add(new Texture("fire_ball.png"));
       screen.projectiles.add(new Projectile(sprite, 0, this, this.player.x, this.player.y, team));
       this.timeLastShot=0f;
     }
@@ -116,6 +137,11 @@ public class Boat extends GameObject {
     return abs(this.x - player.x) < (xDistence) && abs(this.y - player.y) < (yDistence);
   }
 
+  /**
+   * Overrides the GameObject draw method in order to change texture upon destruction
+   * @param batch         the SpriteBatch the Boat is to be drawn on.
+   * @param elapsedTime   time passed
+   */
   @Override
   public void draw(SpriteBatch batch, float elapsedTime){
     if(currentHealth>0){
@@ -124,6 +150,9 @@ public class Boat extends GameObject {
     else{batch.draw(frame.get(1), x - width/2, y - height/2, width, height);}
   }
 
+  /**
+   * Creates the object JSONs for the save file
+   */
   @Override
   public void genSave(){
     super.genSave();
@@ -132,6 +161,9 @@ public class Boat extends GameObject {
     objectJSON.put("timeBetweenShots", timeBetweenShots);
   }
 
+  /**
+   * Loads the object JSONs from the save file
+   */
   @Override
   public void loadSave(JSONObject objectJSON){
     super.loadSave(objectJSON);
